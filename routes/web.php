@@ -22,3 +22,7 @@ Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
 Route::get('/contoh', function () {
     return view('copy_this.table');
 })->name('table.index');
+
+Route::prefix('contactus')->group(function () {
+    Route::get('/index','Dashboard\ContactusController@index')->name('contactus.index');
+});
