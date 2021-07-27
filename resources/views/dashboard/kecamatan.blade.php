@@ -79,14 +79,14 @@ Page Table Contoh
                                                 <label class="col-sm-2 col-form-label">Nama Kecamatan</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control"
-                                                        placeholder="kecamtaan" autocomplete="off">
+                                                        placeholder="kecamtaan" autocomplete="off" name="nama_kecamatan">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Kordinat</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control"
-                                                        placeholder="kordinat" autocomplete="off">
+                                                        placeholder="kordinat" autocomplete="off" name="korddinat">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
