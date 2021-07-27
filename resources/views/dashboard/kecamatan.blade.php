@@ -7,11 +7,17 @@ Page Table Contoh
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h4>Data (nama data)</h4>
+                <h4>Data Kecamatan</h4>
             </div>
             <div class="card-block tab-icon">
                 <div class="row">
                     <div class="col-lg-12 col-xl-12">
+                        @if ($errors->any())
+                            <p class="text-danger">Ada yang error !</p>
+                        @endif
+                        @if (session('status'))
+                            <p class="text-success">{{ session('status')}}</p>
+                        @endif
                         <ul class="nav nav-tabs md-tabs " role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#table" role="tab"><i
@@ -90,26 +96,33 @@ Page Table Contoh
                                     </div>
                                     <div class="card-block">
                                         <h4 class="sub-title">Masukan Kecamatan (nama kecamatan)</h4>
-                                        <form>
+                                        <form method="post" action="{{ route('kecamatan.insert')}}">
+                                            @csrf
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Nama Kecamatan</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control"
-                                                        placeholder="kecamtaan" autocomplete="off" name="nama_kecamatan">
+                                                        placeholder="kecamatan" autocomplete="off" name="nama_kecamatan">
+                                                    @error('nama_kecamatan')
+                                                        <p class="text text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Kordinat</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control"
-                                                        placeholder="kordinat" autocomplete="off" name="korddinat">
+                                                        placeholder="kordinat" autocomplete="off" name="kordinat">
+                                                    @error('kordinat')
+                                                        <p class="text text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
                                                     <button
-                                                        class="btn waves-effect waves-light btn-primary">Simpan</button>
+                                                        class="btn waves-effect waves-light btn-primary" type="submit">Simpan</button>
                                                 </div>
                                             </div>
                                         </form>

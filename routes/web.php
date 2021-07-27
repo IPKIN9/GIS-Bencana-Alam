@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
 Route::prefix('kecamatan')->group(function() {
     Route::get('/index','Dashboard\KecamatanController@index')->name('kecamatan.index');
+    Route::post('/insert', 'Dashboard\KecamatanController@insert')->name('kecamatan.insert');
     });
 
 // Isi di sini
