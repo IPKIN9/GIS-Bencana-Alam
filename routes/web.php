@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
+Route::prefix('kecamatan')->group(function() {
+    Route::get('/index','Dashboard\KecamatanController@index')->name('kecamatan.index');
+    });
 
 // Isi di sini
 
