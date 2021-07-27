@@ -12,6 +12,12 @@ Jenis Bahaya
             <div class="card-block tab-icon">
                 <div class="row">
                     <div class="col-lg-12 col-xl-12">
+                        @if ($errors->any())
+                        <p class="alert-danger">ada yang error</p>
+                        @endif
+                        @if (session('status'))
+                        <p class="text-success" {{ session('status')}}></p>
+                        @endif
                         <ul class="nav nav-tabs md-tabs " role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#table" role="tab"><i
@@ -86,19 +92,24 @@ Jenis Bahaya
                                     </div>
                                     <div class="card-block">
                                         <h4 class="sub-title">Masukan Data Jenis Bahaya</h4>
-                                        <form>
+                                        <form method="POST" action="{{route('JenisBahaya.insert')}}">
+                                            @csrf
+
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Nama Jenis Bahaya</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="nama_jenis_bahaya" class="form-control"
                                                         placeholder="Nama Jenis Bahaya" autocomplete="off">
+                                                    @error('nama_jenis_bahaya')
+                                                    <p class="text-danger mt-2">{{ $message}}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
                                                     <button
-                                                        class="btn waves-effect waves-light btn-primary">Simpan</button>
+                                                        class="btn waves-effect waves-light btn-primary" type="submit">Simpan</button>
                                                 </div>
                                             </div>
                                         </form>
