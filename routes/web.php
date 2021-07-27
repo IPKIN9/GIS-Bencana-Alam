@@ -25,4 +25,5 @@ Route::get('/contoh', function () {
 
 Route::prefix('contactus')->group(function () {
     Route::get('/index','Dashboard\ContactusController@index')->name('contactus.index');
+    Route::post('/insert','Dashboard\ContactusController@insert')->name('contactus.insert');
 });

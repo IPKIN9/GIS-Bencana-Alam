@@ -12,6 +12,12 @@ Tabel Contact Us
             <div class="card-block tab-icon">
                 <div class="row">
                     <div class="col-lg-12 col-xl-12">
+                        @if ($errors->any())
+                            <p class="text-danger">Ada yang error !</p>
+                        @endif
+                        @if (session('status'))
+                            <p class="text-success">{{ session('status')}}</p>
+                        @endif
                         <ul class="nav nav-tabs md-tabs " role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#table" role="tab"><i
@@ -89,12 +95,16 @@ Tabel Contact Us
                                     </div>
                                     <div class="card-block">
                                         <h4 class="sub-title">Masukan Data Contact Us</h4>
-                                        <form>
+                                        <form method="POST" action="{{route('contactus.insert')}}">
+                                            @csrf
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Alamat</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="alamat" class="form-control"
                                                         placeholder="Alamat" autocomplete="off">
+                                                    @error('alamat')
+                                                        <p class="text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -102,6 +112,9 @@ Tabel Contact Us
                                                 <div class="col-sm-10">
                                                     <input type="text" name="kantor_pos" class="form-control"
                                                         placeholder="Kantor Pos" autocomplete="off">
+                                                    @error('kantor_pos')
+                                                        <p class="text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -109,20 +122,26 @@ Tabel Contact Us
                                                 <div class="col-sm-10">
                                                     <input type="text" name="email" class="form-control"
                                                         placeholder="Email" autocomplete="off">
+                                                    @error('email')
+                                                        <p class="text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Telepon</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="telepon" class="form-control"
-                                                        placeholder="Telepon" autocomplete="off">
+                                                        placeholder="Telepon" autocomplete="off" >
+                                                    @error('telepon')
+                                                        <p class="text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
-                                                    <button
-                                                        class="btn waves-effect waves-light btn-primary">Simpan</button>
+                                                    <button 
+                                                    type="submit" class="btn waves-effect waves-light btn-primary">Simpan</button>
                                                 </div>
                                             </div>
                                         </form>
