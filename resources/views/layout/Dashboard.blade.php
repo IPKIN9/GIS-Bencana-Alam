@@ -4,6 +4,7 @@
 <head>
     <title>@yield('title')</title>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description"
@@ -277,6 +278,30 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="univ_modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 id="modal_title" class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <form id="formInput">
+                    @csrf
+                    <div id="modal_body" class="modal-body">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="btn_save" type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
