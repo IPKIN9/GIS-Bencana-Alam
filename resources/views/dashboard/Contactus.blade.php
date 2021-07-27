@@ -32,7 +32,7 @@ Tabel Contact Us
                                     </div>
                                     <div class="card-block table-border-style">
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table id="contoh" class="display" style="width: 100%">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -44,24 +44,39 @@ Tabel Contact Us
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-primary btn-icon"><i
+                                                    @php
+                                                        $no=1;
+                                                    @endphp
+                                                    @foreach ($data as $d)
+                                                        <tr>
+                                                            <td>{{$no++}}</td>
+                                                            <td>{{$d->alamat}}</td>
+                                                            <td>{{$d->kantor_pos}}</td>
+                                                            <td>{{$d->email}}</td>
+                                                            <td>{{$d->telepon}}</td>
+                                                            <td>
+                                                                <button style="height: 30px; width:30px;"
+                                                                class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
                                                                     class="fa fa-edit"
-                                                                    style="margin-left: 9px;"></i></button>
-                                                            <button
+                                                                    style="margin-left: 8px;"></i></button>
+                                                            <button style="height: 30px; width:30px;"
                                                                 class="btn waves-effect waves-light btn-danger btn-icon"><i
                                                                     class="fa fa-trash"
-                                                                    style="margin-left: 11px;"></i></button>
-                                                        </td>
-                                                    </tr>
+                                                                    style="margin-left: 9px;"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Alamat</th>
+                                                        <th>Kantor Pos</th>
+                                                        <th>Email</th>
+                                                        <th>Telepon</th>
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
@@ -92,7 +107,7 @@ Tabel Contact Us
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Email</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" name="email" class="form-control"
                                                         placeholder="Email" autocomplete="off">
                                                 </div>
                                             </div>
@@ -121,4 +136,11 @@ Tabel Contact Us
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+    <script>
+        $(document).ready( function (){
+            $('#contoh').DataTable();
+        });
+    </script>
 @endsection
