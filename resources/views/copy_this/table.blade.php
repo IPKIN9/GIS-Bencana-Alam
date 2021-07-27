@@ -35,25 +35,45 @@ Page Table Contoh
                                             <table id="contoh" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>No</th>
+                                                        <th>Nama</th>
+                                                        <th>Keterangan</th>
+                                                        <th>Created_at</th>
+                                                        <th>Updated_at</th>
+                                                        <th>Option</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
+                                                    @php
+                                                    $no = 1;
+                                                    @endphp
+                                                    @foreach ($data as $d)
+                                                    <tr>
+                                                        <td>{{$no++}}</td>
+                                                        <td>{{$d->nama}}</td>
+                                                        <td>{{$d->ket}}</td>
+                                                        <td>{{$d->created_at}}</td>
+                                                        <td>{{$d->updated_at}}</td>
+                                                        <td>
+                                                            <button style="height: 30px; width: 30px;"
+                                                                class="mr-2 btn waves-effects weves-light btn-primary btn-icon">
+                                                                <i class="fa fa-edit" style="margin-left: 8px;"></i>
+                                                            </button>
+                                                            <button style="height: 30px; width: 30px;"
+                                                                class="btn waves-effects weves-light btn-danger btn-icon">
+                                                                <i class="fa fa-trash" style="margin-left: 9px;"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Position</th>
-                                                        <th>Office</th>
-                                                        <th>Age</th>
-                                                        <th>Start date</th>
-                                                        <th>Salary</th>
+                                                        <th>Nama</th>
+                                                        <th>Keterangan</th>
+                                                        <th>Created_at</th>
+                                                        <th>Updated_at</th>
+                                                        <th>Option</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
