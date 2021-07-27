@@ -32,7 +32,7 @@ Page Table Contoh
                                     </div>
                                     <div class="card-block table-border-style">
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table id="contoh" class="display" style="width: 100%;">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
@@ -44,24 +44,40 @@ Page Table Contoh
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <th></th>
-                                                        <td>
+                                                    @php
+                                                        $no = 1;
+                                                    @endphp
+                                                    @foreach($data as $d)
+                                                        <tr>
+                                                            <td>{{ $no++}}</td>
+                                                            <td>{{ $d->nama_kecamatan}}</td>
+                                                            <td>{{ $d->kordinat}}</td>
+                                                            <td>{{ $d->created_at}}</td>
+                                                            <td>{{ $d->updated_at}}</td>
+                                                            <td>
                                                             <button
-                                                                class="btn waves-effect waves-light btn-primary btn-icon"><i
+                                                                class="btn waves-effect waves-light btn-primary btn-icon mr-2"><i
                                                                     class="fa fa-edit"
                                                                     style="margin-left: 9px;"></i></button>
                                                             <button
                                                                 class="btn waves-effect waves-light btn-danger btn-icon"><i
                                                                     class="fa fa-trash"
                                                                     style="margin-left: 11px;"></i></button>
-                                                        </td>
-                                                    </tr>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Nama Kecamatan</th>
+                                                        <th>Kordinat</th>
+                                                        <th>Created_at</th>
+                                                        <th>Updated_at</th>
+                                                        <th>Options</th>
+                                                    </tr>
+                                                </tfoot>
+
                                             </table>
                                         </div>
                                     </div>
@@ -107,4 +123,11 @@ Page Table Contoh
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+    <script>
+        $(document).ready( function () {
+            $('#contoh').DataTable();
+        } );
+    </script>
 @endsection
