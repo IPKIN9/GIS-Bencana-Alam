@@ -32,32 +32,30 @@ Page Table Contoh
                                     </div>
                                     <div class="card-block table-border-style">
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table id="contoh" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Nama</th>
-                                                        <th>ket</th>
-                                                        <th style="width: 150px">Option</th>
+                                                        <th>Name</th>
+                                                        <th>Position</th>
+                                                        <th>Office</th>
+                                                        <th>Age</th>
+                                                        <th>Start date</th>
+                                                        <th>Salary</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-primary btn-icon mr-1"><i
-                                                                    class="fa fa-edit"
-                                                                    style="margin-left: 9px;"></i></button>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-danger btn-icon"><i
-                                                                    class="fa fa-trash"
-                                                                    style="margin-left: 11px;"></i></button>
-                                                        </td>
-                                                    </tr>
+
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Position</th>
+                                                        <th>Office</th>
+                                                        <th>Age</th>
+                                                        <th>Start date</th>
+                                                        <th>Salary</th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
@@ -103,4 +101,11 @@ Page Table Contoh
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready( function () {
+        $('#contoh').DataTable();
+    } );
+</script>
 @endsection
