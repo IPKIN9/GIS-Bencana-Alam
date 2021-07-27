@@ -1,6 +1,6 @@
 @extends('layout.Dashboard')
 @section('title')
-Page Table Contoh
+Tabel kelas
 @endsection
 @section('content')
 <div class="row">
@@ -32,7 +32,7 @@ Page Table Contoh
                                     </div>
                                     <div class="card-block table-border-style">
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table class="display" id="contoh" style="width:100%">
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
@@ -40,27 +40,38 @@ Page Table Contoh
                                                         <th>Created_at</th>
                                                         <th>Update_at</th>
                                                         <th>Option</th>
-
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-primary btn-icon"><i
-                                                                    class="fa fa-edit"
-                                                                    style="margin-left: 9px;"></i></button>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-danger btn-icon"><i
-                                                                    class="fa fa-trash"
-                                                                    style="margin-left: 11px;"></i></button>
-                                                        </td>
-                                                    </tr>
+                                                    @php
+                                                    $no=1;
+                                                    @endphp
+                                                    @foreach ($data as $d)
+                                                    <td>{{$no++}}</td>
+                                                    <td>{{$d->nama_kelas}}</td>
+                                                    <td>{{$d->created_at}}</td>
+                                                    <td>{{$d->updated_at}}</td>
+                                                    <td>
+                                                        <button style="height: 30px; width:30px;"
+                                                            class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
+                                                                class="fa fa-edit"
+                                                                style="margin-left: 9px;"></i></button>
+                                                        <button style="height: 30px; width:30px;"
+                                                            class="btn waves-effect waves-light btn-danger btn-icon"><i
+                                                                class="fa fa-trash"
+                                                                style="margin-left: 11px;"></i></button>
+                                                    </td>
+                                                    @endforeach
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama kelas</th>
+                                                        <th>Created_at</th>
+                                                        <th>Update_at</th>
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
@@ -99,4 +110,11 @@ Page Table Contoh
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function (){
+            $('#contoh').DataTable();
+        });
+</script>
 @endsection
