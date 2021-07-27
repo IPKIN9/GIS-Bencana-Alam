@@ -12,6 +12,12 @@ Tabel kelas
             <div class="card-block tab-icon">
                 <div class="row">
                     <div class="col-lg-12 col-xl-12">
+                        @if ($errors->any())
+                        <p class="text-danger">Ada yang eror !</p>
+                        @endif
+                        @if (session('status'))
+                        <p class="text-success">{{session('status')}}</p>
+                        @endif
                         <ul class="nav nav-tabs md-tabs " role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#table" role="tab"><i
@@ -47,20 +53,22 @@ Tabel kelas
                                                     $no=1;
                                                     @endphp
                                                     @foreach ($data as $d)
-                                                    <td>{{$no++}}</td>
-                                                    <td>{{$d->nama_kelas}}</td>
-                                                    <td>{{$d->created_at}}</td>
-                                                    <td>{{$d->updated_at}}</td>
-                                                    <td>
-                                                        <button style="height: 30px; width:30px;"
-                                                            class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
-                                                                class="fa fa-edit"
-                                                                style="margin-left: 9px;"></i></button>
-                                                        <button style="height: 30px; width:30px;"
-                                                            class="btn waves-effect waves-light btn-danger btn-icon"><i
-                                                                class="fa fa-trash"
-                                                                style="margin-left: 11px;"></i></button>
-                                                    </td>
+                                                    <tr>
+                                                        <td>{{$no++}}</td>
+                                                        <td>{{$d->nama_kelas}}</td>
+                                                        <td>{{$d->created_at}}</td>
+                                                        <td>{{$d->updated_at}}</td>
+                                                        <td>
+                                                            <button style="height: 30px; width:30px;"
+                                                                class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
+                                                                    class="fa fa-edit"
+                                                                    style="margin-left: 8px;"></i></button>
+                                                            <button style="height: 30px; width:30px;"
+                                                                class="btn waves-effect waves-light btn-danger btn-icon"><i
+                                                                    class="fa fa-trash"
+                                                                    style="margin-left: 9px;"></i></button>
+                                                        </td>
+                                                    </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
@@ -84,12 +92,16 @@ Tabel kelas
                                     </div>
                                     <div class="card-block">
                                         <h4 class="sub-title">Masukan Data (Kelas)</h4>
-                                        <form>
+                                        <form method="POST" action="{{route('kelas.insert')}}">
+                                            @csrf
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Kelas</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="kelas" class="form-control"
+                                                    <input type="text" name="nama_kelas" class="form-control"
                                                         placeholder="Nama kelas" autocomplete="off">
+                                                    @error('nama_kelas')
+                                                    <div class="alert alert-danger">{{$message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">

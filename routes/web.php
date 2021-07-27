@@ -25,4 +25,5 @@ Route::get('/contoh', function () {
 
 Route::prefix('kelas')->group(function () {
     route::get('/index','Dashboard\KelasController@index')->name('kelas.index');
+    Route::post('/insert','Dashboard\KelasController@insert')->name('kelas.insert');
 });
