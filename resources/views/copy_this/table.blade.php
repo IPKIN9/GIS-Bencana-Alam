@@ -12,6 +12,12 @@ Page Table Contoh
             <div class="card-block tab-icon">
                 <div class="row">
                     <div class="col-lg-12 col-xl-12">
+                        @if ($errors->any())
+                        <p class="text-danger">Ada yang error !</p>
+                        @endif
+                        @if (session('status'))
+                        <p class="text-success">{{ session('status') }}</p>
+                        @endif
                         <ul class="nav nav-tabs md-tabs " role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#table" role="tab"><i
@@ -52,14 +58,16 @@ Page Table Contoh
                                                         <td>{{$no++}}</td>
                                                         <td>{{$d->nama}}</td>
                                                         <td>{{$d->ket}}</td>
-                                                        <td>{{$d->created_at}}</td>
-                                                        <td>{{$d->updated_at}}</td>
+                                                        <td>{{date('d-m-Y', strtotime($d->created_at))}}</td>
+                                                        <td>{{date('d-m-Y', strtotime($d->updated_at))}}</td>
                                                         <td>
-                                                            <button style="height: 30px; width: 30px;"
+                                                            <button id="btn_edit" data-id="{{$d->id}}"
+                                                                style="height: 30px; width: 30px;"
                                                                 class="mr-2 btn waves-effects weves-light btn-primary btn-icon">
                                                                 <i class="fa fa-edit" style="margin-left: 8px;"></i>
                                                             </button>
-                                                            <button style="height: 30px; width: 30px;"
+                                                            <button id="btn_hapus" data-id="{{$d->id}}"
+                                                                style="height: 30px; width: 30px;"
                                                                 class="btn waves-effects weves-light btn-danger btn-icon">
                                                                 <i class="fa fa-trash" style="margin-left: 9px;"></i>
                                                             </button>
@@ -88,25 +96,34 @@ Page Table Contoh
                                     </div>
                                     <div class="card-block">
                                         <h4 class="sub-title">Masukan Data (nama data)</h4>
-                                        <form>
+                                        <form method="POST" action="{{route('contoh.insert')}}">
+                                            @csrf
+
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
+                                                    <input name="nama" type="text" class="form-control"
                                                         placeholder="Autocomplete Off" autocomplete="off">
+                                                    @error('nama')
+                                                    <p class="text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
+
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Keterangan</label>
                                                 <div class="col-sm-10">
-                                                    <textarea rows="5" cols="5" class="form-control"
+                                                    <textarea name="ket" rows="5" cols="5" class="form-control"
                                                         placeholder="Default textarea"></textarea>
+                                                    @error('ket')
+                                                    <p class="text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
-                                                    <button
+                                                    <button type="submit"
                                                         class="btn waves-effect waves-light btn-primary">Simpan</button>
                                                 </div>
                                             </div>
@@ -125,7 +142,71 @@ Page Table Contoh
 @section('js')
 <script>
     $(document).ready( function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
         $('#contoh').DataTable();
+
+        $('body').on('click','#btn_edit',function(){
+            let dataId = $(this).data('id');
+            let $url = "edit/"+dataId;
+            $.get($url,function(data){
+                $('#modal_title').html('Edit data contoh');
+                $('#modal_body').html('');
+                $('#univ_modal').modal('show');
+                $('#modal_body').append(`
+                <div class="form-group row">
+                    <input type="hidden" id="id" name="id" value="`+ data.id +`">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input value="`+ data.nama +`" name="nama" type="text" class="form-control"
+                            placeholder="Autocomplete Off" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Keterangan</label>
+                    <div class="col-sm-10">
+                        <textarea id="ket" name="ket" rows="5" cols="5" class="form-control"
+                            placeholder="Default textarea"></textarea>
+                    </div>
+                </div>
+                `);
+                $('#ket').val(data.ket)
+            });
+        });
+
+        $('body').on('click', '#btn_save', function () {
+            let id = $('#formInput').find('#id').val();
+            let formData = $('#formInput').serialize();
+            $.ajax({
+                url: 'update/'+id,
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    $('#univ_modal').modal('hide');
+                    Swal.fire({
+                        title: 'Update!',
+                        text: 'Data berhasl di perbaharui.',
+                        icon: 'success',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Oke'
+                        }).then((result) => {
+                            location.reload();
+                        });
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ada yang salah!',
+                    });
+                }
+            })
+        });
     } );
 </script>
 @endsection
