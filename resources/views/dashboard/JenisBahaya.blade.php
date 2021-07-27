@@ -32,7 +32,7 @@ Jenis Bahaya
                                     </div>
                                     <div class="card-block table-border-style">
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table class="display" id="contoh" style="width: 100%">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
@@ -43,23 +43,37 @@ Jenis Bahaya
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @php
+                                                    $no = 1;
+                                                    @endphp
+                                                    @foreach ($data as $d)
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <td>@mdo</td>
+                                                        <td>{{$no++}}</td>
+                                                        <td>{{$d->nama_jenis_bahaya}}</td>
+                                                        <td>{{$d->created_at}}</td>
+                                                        <td>{{$d->updated_at}}</td>
                                                         <td>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-primary btn-icon"><i
+                                                            <button style="height: 30px; width: 30px;"
+                                                                class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
                                                                     class="fa fa-edit"
                                                                     style="margin-left: 9px;"></i></button>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-danger btn-icon"><i
+                                                            <button style="height: 30px; width: 30px;"
+                                                                class="mr-2 btn waves-effect waves-light btn-danger btn-icon"><i
                                                                     class="fa fa-trash"
                                                                     style="margin-left: 11px;"></i></button>
                                                         </td>
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Nama Jenis Bahaya</th>
+                                                        <th>Created</th>
+                                                        <th>Updated</th>
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
@@ -76,11 +90,11 @@ Jenis Bahaya
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Nama Jenis Bahaya</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
+                                                    <input type="text" name="nama_jenis_bahaya" class="form-control"
                                                         placeholder="Nama Jenis Bahaya" autocomplete="off">
                                                 </div>
                                             </div>
-                                                <div class="form-group row">
+                                            <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
                                                     <button
@@ -98,4 +112,11 @@ Jenis Bahaya
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready( function(){
+            $('#contoh').DataTable();
+        } );
+</script>
 @endsection
