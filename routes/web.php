@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
+Route::get('/JenisBahaya', 'Dashboard\JenisBahayaController@index')->name('JenisBahaya.index');
 
 // Isi di sini
 
