@@ -22,8 +22,9 @@
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
         media="all" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" defer>
+
 </head>
 
 <body>
@@ -310,6 +311,9 @@
     <script type="text/javascript" src="{{ asset('assets/pages/dashboard/custom-dashboard.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js" defer>
+    </script>
+    @yield('js')
 </body>
 
 </html>
