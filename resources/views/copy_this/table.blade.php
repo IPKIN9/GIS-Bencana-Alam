@@ -50,7 +50,7 @@ Page Table Contoh
                                                         <td>@mdo</td>
                                                         <td>
                                                             <button
-                                                                class="btn waves-effect waves-light btn-primary btn-icon"><i
+                                                                class="btn waves-effect waves-light btn-primary btn-icon mr-1"><i
                                                                     class="fa fa-edit"
                                                                     style="margin-left: 9px;"></i></button>
                                                             <button
