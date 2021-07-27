@@ -15,6 +15,8 @@ class CreateContohTable extends Migration
     {
         Schema::create('contoh', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('ket');
             $table->timestamps();
         });
     }
