@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
+
+// Isi di sini
+
+
+// 
+Route::get('/contoh', function () {
+    return view('copy_this.table');
+})->name('table.index');
