@@ -19,7 +19,7 @@ class KecamatanController extends Controller
 
     public function insert(KecamatanRequest $request)
     {
-        $$table->date('field_name')->unique()->nullable()->default(field_default)->comment('field_comment')->after('field_name'); = Carbon::now();
+        $date = Carbon::now();
         $data = array(
             'nama_kecamatan' => $request->nama_kecamatan,
             'kordinat' => $request->kordinat,
@@ -30,5 +30,28 @@ class KecamatanController extends Controller
         return redirect()->back()->with('status', 'Data Berhasil Disimpan');
     }
 
+    public function edit($id)
+    {
+        $response = KecamatanModel::where('id', $id)->first();
+        return response()->json($response);
+    }
 
+    public function update(KecamatanRequest $request, $id)
+    {
+        $date = Carbon::now();
+        $data = array(
+            'nama_kecamatan' => $request->nama_kecamatan,
+            'kordinat' => $request->kordinat,
+            'updated_at' => $date,
+        );
+        DB::table('kecamatan')->where('id', $id)->update($data);
+        return response()->json();
+    }
+
+    public function delete($id)
+    {
+        KecamatanModel::where('id', $id)->delete();
+        return response()->json();
+    }
 }
+

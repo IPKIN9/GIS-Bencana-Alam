@@ -4,6 +4,7 @@
 <head>
     <title>@yield('title')</title>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description"
@@ -101,7 +102,7 @@
                             </div>
                         </div>
                         <a href="">
-                            <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
+                            <img class="img-fluid" src="{{ asset('assets/images/logo.png') }}" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -118,7 +119,12 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
+
                                     <img src="{{ asset('assets')}}assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+
+                                    <img src="{{ asset('assets/images/avatar-4.jpg') }}" class="img-radius"
+                                        alt="User-Profile-Image">
+
                                     <span>John Doe</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -142,7 +148,7 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets/images/avatar-4.jpg"
+                                    <img class="img-80 img-radius" src="{{ asset('assets/images/avatar-4.jpg') }}"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span id="more-details">John Doe</span>
@@ -238,8 +244,8 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="{{ Route::is('table.index') ? 'active' : '' }}">
-                                    <a href="{{route('table.index')}}" class="waves-effect waves-dark">
+                                <li class="{{ Route::is('contoh.index') ? 'active' : '' }}">
+                                    <a href="{{route('contoh.index')}}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">CONTOH
                                             TABEL</span>
@@ -277,6 +283,30 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="univ_modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 id="modal_title" class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <form id="formInput">
+                    @csrf
+                    <div id="modal_body" class="modal-body">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="btn_save" type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
