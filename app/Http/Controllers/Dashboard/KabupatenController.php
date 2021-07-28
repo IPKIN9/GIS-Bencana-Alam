@@ -15,17 +15,15 @@ class KabupatenController extends Controller
     public function index()
     {
         $data = array(
-            'kecamatan' => KecamatanModel::all(),
-            'kabupaten' => KabupatenModel::with('kecamatan_role')->get() 
+            'kabupaten' => KabupatenModel::all()
         );
-        return view('dashboard.Kabupaten')->with('data',$data);
+        return view('dashboard.Kabupaten')->with('data', $data);
     }
     public function insert(KabupatenRequest $request)
     {
         $date = Carbon::now();
         $data = array(
             'nama_kabupaten' => $request->nama_kabupaten,
-            'id_kecamatan' => $request->id_kecamatan,
             'created_at' => $date,
             'updated_at' => $date,
         );
@@ -42,7 +40,6 @@ class KabupatenController extends Controller
         $date = Carbon::now();
         $data = array(
             'nama_kabupaten' => $request->nama_kabupaten,
-            'id_kecamatan' => $request->id_kecamatan,
             'updated_at' => $date,
         );
         DB::table('kabupaten')->where('id', $id)->update($data);

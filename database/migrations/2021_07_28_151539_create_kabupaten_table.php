@@ -16,7 +16,6 @@ class CreateKabupatenTable extends Migration
         Schema::create('kabupaten', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kabupaten');
-            $table->foreignId('id_kecamatan')->constrained('kecamatan');
             $table->timestamps();
         });
     }
