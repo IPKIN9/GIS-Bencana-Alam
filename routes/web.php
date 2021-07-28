@@ -23,7 +23,6 @@ Route::prefix('webdescription')->group(function () {
     Route::get('edit/{id}','Dashboard\WebDescriptionController@edit');
     Route::post('update/{id}','Dashboard\WebDescriptionController@update');
     Route::delete('delete/{id}','Dashboard\WebDescriptionController@delete');
-
 });
 Route::prefix('contoh')->group(function () {
     Route::get('/index', 'Dashboard\ContohController@index')->name('contoh.index');
