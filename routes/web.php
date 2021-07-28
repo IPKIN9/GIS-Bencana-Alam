@@ -17,6 +17,14 @@ Route::prefix('contactus')->group(function () {
     Route::post('update/{id}','Dashboard\ContactusController@update');
     Route::delete('delete/{id}','Dashboard\ContactusController@delete');
 });
+Route::prefix('webdescription')->group(function () {
+    Route::get('/index','Dashboard\WebDescriptionController@index')->name('webdescription.index');
+    Route::post('/insert','Dashboard\WebDescriptionController@insert')->name('webdescription.insert');
+    Route::get('edit/{id}','Dashboard\WebDescriptionController@edit');
+    Route::post('update/{id}','Dashboard\WebDescriptionController@update');
+    Route::delete('delete/{id}','Dashboard\WebDescriptionController@delete');
+
+});
 Route::prefix('contoh')->group(function () {
     Route::get('/index', 'Dashboard\ContohController@index')->name('contoh.index');
     Route::post('/insert', 'Dashboard\ContohController@insert')->name('contoh.insert');
