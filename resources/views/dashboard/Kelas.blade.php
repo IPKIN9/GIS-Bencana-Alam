@@ -56,14 +56,16 @@ Tabel kelas
                                                     <tr>
                                                         <td>{{$no++}}</td>
                                                         <td>{{$d->nama_kelas}}</td>
-                                                        <td>{{$d->created_at}}</td>
-                                                        <td>{{$d->updated_at}}</td>
+                                                        <td>{{date('d-m-y', strtotime($d->created_at))}}</td>
+                                                        <td>{{date('d-m-y', strtotime($d->updated_at))}}</td>
                                                         <td>
-                                                            <button style="height: 30px; width:30px;"
+                                                            <button style="height: 30px; width:30px;" id="btn_edit"
+                                                                data-id="{{$d->id}}"
                                                                 class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
                                                                     class="fa fa-edit"
                                                                     style="margin-left: 8px;"></i></button>
-                                                            <button style="height: 30px; width:30px;"
+                                                            <button style="height: 30px; width:30px;" id="btn_edit"
+                                                                data-id="{{$d->id}}"
                                                                 class="btn waves-effect waves-light btn-danger btn-icon"><i
                                                                     class="fa fa-trash"
                                                                     style="margin-left: 9px;"></i></button>
@@ -126,7 +128,38 @@ Tabel kelas
 @section('js')
 <script>
     $(document).ready(function (){
+            $.ajaxSetup({
+                headers:{
+                    'X-CSRF-TOKEN':$('meta[name="scrf-token"]').attr('content')
+                }
+            });
+
             $('#contoh').DataTable();
+
+            $('body').on('click','#btn_edit',function(){
+                let dataId = $(this).data('id');
+                let $url = "edit/"+dataId;
+                $.get($url,function(data){
+                    $('#modal_title').html('Edit Data Kelas');
+                    $('#modal_body').html('');
+                    $('#univ_modal').modal('show');
+                    $('#modal_body').append(`
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <input type="hidden" id="id" name="id" class="form-control"
+                                placeholder="Nama kelas" value="`+data.id+`" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Kelas</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="nama_kelas" name="nama_kelas" class="form-control"
+                                placeholder="Nama kelas" value="`+data.nama_kelas+`" autocomplete="off">
+                        </div>
+                    </div>
+                    `);
+                });
+            });
         });
 </script>
 @endsection

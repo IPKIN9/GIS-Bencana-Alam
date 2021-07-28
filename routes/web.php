@@ -24,6 +24,8 @@ Route::get('/contoh', function () {
 })->name('table.index');
 
 Route::prefix('kelas')->group(function () {
-    route::get('/index','Dashboard\KelasController@index')->name('kelas.index');
+    Route::get('/index','Dashboard\KelasController@index')->name('kelas.index');
     Route::post('/insert','Dashboard\KelasController@insert')->name('kelas.insert');
+    Route::get('edit/{id}','Dashboard\KelasController@edit');
+    Route::post('update/{id}','Dashboard\KelasController@update');
 });

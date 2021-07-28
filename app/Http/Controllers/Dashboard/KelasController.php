@@ -23,9 +23,15 @@ class KelasController extends Controller
         $data = array(
             'nama_kelas' => $request->nama_kelas,
             'created_at' => $date,
-            'updated_at'  => $date
+            'updated_at' => $date
         );
         DB::table('kelas')->insert($data);
         return redirect()->back()->with('status','Data berhasil di simpan');
+    }
+
+    public function edit($id)
+    {
+        $response = KelasModel::where('id', $id)->first();
+        return response()->json($response);
     }
 }
