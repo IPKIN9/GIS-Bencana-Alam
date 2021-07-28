@@ -7,7 +7,7 @@ Tabel Kelas
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h4>Data (Kelas)</h4>
+                <h4>Data Kelas)</h4>
             </div>
             <div class="card-block tab-icon">
                 <div class="row">
