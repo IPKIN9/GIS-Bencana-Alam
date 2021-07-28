@@ -4,6 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
+Route::prefix('kelas')->group(function () {
+    Route::get('/index','Dashboard\KelasController@index')->name('kelas.index');
+    Route::post('/insert','Dashboard\KelasController@insert')->name('kelas.insert');
+    Route::get('edit/{id}','Dashboard\KelasController@edit');
+    Route::post('update/{id}','Dashboard\KelasController@update');
+    Route::delete('delete/{id}','Dashboard\KelasController@delete');
+});
 Route::prefix('kecamatan')->group(function() {
     Route::get('/index','Dashboard\KecamatanController@index')->name('kecamatan.index');
     Route::post('/insert', 'Dashboard\KecamatanController@insert')->name('kecamatan.insert');
