@@ -34,4 +34,21 @@ class KelasController extends Controller
         $response = KelasModel::where('id', $id)->first();
         return response()->json($response);
     }
+
+    public function update(KelasRiquest $request, $id)
+    {
+        $date = Carbon::now();
+        $data = array(
+            'nama_kelas' => $request->nama_kelas,
+            'updated_at' => $date
+        );
+        DB::table('kelas')->where('id',$id)->update($data);
+        return response()->json();
+    }
+
+    public function delete($id)
+    {
+        KelasModel::where('id', $id)->delete();
+        return response()->json();
+    }
 }

@@ -2,16 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
 
@@ -19,13 +9,18 @@ Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
 
 
 // 
-Route::get('/contoh', function () {
-    return view('copy_this.table');
-})->name('table.index');
 
 Route::prefix('kelas')->group(function () {
     Route::get('/index','Dashboard\KelasController@index')->name('kelas.index');
     Route::post('/insert','Dashboard\KelasController@insert')->name('kelas.insert');
     Route::get('edit/{id}','Dashboard\KelasController@edit');
     Route::post('update/{id}','Dashboard\KelasController@update');
+    Route::delete('delete/{id}','Dashboard\KelasController@delete');
+});
+Route::prefix('contoh')->group(function () {
+    Route::get('/index', 'Dashboard\ContohController@index')->name('contoh.index');
+    Route::post('/insert', 'Dashboard\ContohController@insert')->name('contoh.insert');
+    Route::get('edit/{id}', 'Dashboard\ContohController@edit');
+    Route::post('update/{id}', 'Dashboard\ContohController@update');
+    Route::delete('delete/{id}', 'Dashboard\ContohController@delete');
 });

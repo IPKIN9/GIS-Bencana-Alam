@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <a href="">
-                            <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
+                            <img class="img-fluid" src="{{ asset('assets/images/logo.png') }}" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -119,7 +119,8 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="{{ asset('assets/images/avatar-4.jpg') }}" class="img-radius"
+                                        alt="User-Profile-Image">
                                     <span>John Doe</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -143,7 +144,7 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets/images/avatar-4.jpg"
+                                    <img class="img-80 img-radius" src="{{ asset('assets/images/avatar-4.jpg') }}"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span id="more-details">John Doe</span>
@@ -239,8 +240,8 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="{{ Route::is('table.index') ? 'active' : '' }}">
-                                    <a href="{{route('table.index')}}" class="waves-effect waves-dark">
+                                <li class="{{ Route::is('contoh.index') ? 'active' : '' }}">
+                                    <a href="{{route('contoh.index')}}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">CONTOH
                                             TABEL</span>
