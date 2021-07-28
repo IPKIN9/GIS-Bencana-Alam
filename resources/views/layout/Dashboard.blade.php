@@ -120,7 +120,8 @@
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
 
-                                    <img src="{{ asset('assets')}}assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="{{ asset('assets')}}assets/images/avatar-4.jpg" class="img-radius"
+                                        alt="User-Profile-Image">
 
                                     <img src="{{ asset('assets/images/avatar-4.jpg') }}" class="img-radius"
                                         alt="User-Profile-Image">
@@ -168,7 +169,12 @@
                                 menu-title-theme="theme1">Master Data</div>
                             <ul class="pcoded-item pcoded-left-item" item-border="true" item-border-style="none"
                                 subitem-border="true">
-                                <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style7">
+                                <li class="pcoded-hasmenu
+                                {{ Route::is('kelas.index') ? 'active' : '' }}
+                                {{ Route::is('JenisBahaya.index') ? 'active' : '' }}
+                                {{ Route::is('kecamatan.index') ? 'active' : '' }}
+                                {{ Route::is('kabupaten.index') ? 'active' : '' }}" dropdown-icon="style3"
+                                    subitem-icon="style7">
                                     <a href="#" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Semua
@@ -235,8 +241,8 @@
                                 menu-title-theme="theme1">Data Kasus</div>
                             <ul class="pcoded-item pcoded-left-item" item-border="true" item-border-style="none"
                                 subitem-border="true">
-                                <li>
-                                    <a href="" class="waves-effect waves-dark">
+                                <li class="{{ Route::is('kasus.index') ? 'active' : '' }}">
+                                    <a href="{{route('kasus.index')}}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Kasus
                                             Bencana</span>
