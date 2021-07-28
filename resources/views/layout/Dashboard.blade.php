@@ -173,7 +173,7 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class="{{ Route::is('home.index') ? 'active' : '' }}">
+                                        <li class="{{ Route::is('kelas.index') ? 'active' : '' }}">
                                             <a href="{{route('kelas.index')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"

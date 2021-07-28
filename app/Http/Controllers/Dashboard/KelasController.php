@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\KelasRequest;
 use App\Http\Requests\KelasRiquest;
 use App\Model\KelasModel;
 use Carbon\Carbon;
@@ -17,7 +18,7 @@ class KelasController extends Controller
         return view('dashboard.Kelas')->with('data',$data);
     }
 
-    public function insert(KelasRiquest $request)
+    public function insert(KelasRequest $request)
     {
         $date=Carbon::now();
         $data = array(
@@ -35,7 +36,7 @@ class KelasController extends Controller
         return response()->json($response);
     }
 
-    public function update(KelasRiquest $request, $id)
+    public function update(KelasRequest $request, $id)
     {
         $date = Carbon::now();
         $data = array(

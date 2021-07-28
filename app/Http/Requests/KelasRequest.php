@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class KelasRiquest extends FormRequest
+class KelasRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class KelasRiquest extends FormRequest
     public function messages()
     {
         return[
-            'required' => 'file ini tidak boleh kosong'
+            'required' => 'Field ini tidak boleh kosong'
         ];
     }
 }

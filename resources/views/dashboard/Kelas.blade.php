@@ -1,6 +1,6 @@
 @extends('layout.Dashboard')
 @section('title')
-Tabel kelas
+Tabel Kelas
 @endsection
 @section('content')
 <div class="row">
@@ -23,7 +23,7 @@ Tabel kelas
                             </div>
                             @endif
                             <div class="card-header">
-                                <h3>Data (Kelas)</h3>
+                                <h3>Data Kelas</h3>
                             </div>
                             @if (session('status'))
                             <div class="card borderless-card">
@@ -53,11 +53,11 @@ Tabel kelas
                                             <div class="tab-pane active" id="table" role="tabpanel">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <h5>Table (Kelas)</h5>
+                                                        <h5>Table kelas</h5>
                                                     </div>
                                                     <div class="card-block table-border-style">
                                                         <div class="table-responsive">
-                                                            <table class="display" id="contoh" style="width:100%">
+                                                            <table class="display" id="kelas" style="width:100%">
                                                                 <thead>
                                                                     <tr>
                                                                         <th>No</th>
@@ -114,7 +114,7 @@ Tabel kelas
                                                         <h5>Tambah Data</h5>
                                                     </div>
                                                     <div class="card-block">
-                                                        <h4 class="sub-title">Masukan Data (Kelas)</h4>
+                                                        <h4 class="sub-title">Masukan Data Kelas</h4>
                                                         <form method="POST" action="{{route('kelas.insert')}}">
                                                             @csrf
                                                             <div class="form-group row">
@@ -159,13 +159,13 @@ Tabel kelas
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        $('#contoh').DataTable();
+        $('#kelas').DataTable();
 
         $('body').on('click','#btn_edit',function(){
             let dataId = $(this).data('id');
             let $url = "edit/"+dataId;
             $.get($url,function(data){
-                $('#modal_title').html('Edit data contoh');
+                $('#modal_title').html('Edit data kelas');
                 $('#modal_body').html('');
                 $('#univ_modal').modal('show');
                 $('#modal_body').append(`
