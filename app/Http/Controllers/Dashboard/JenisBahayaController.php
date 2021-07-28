@@ -36,4 +36,22 @@ class JenisBahayaController extends Controller
         $response = JenisBahayaModel::where('id',$id)->first();
         return response()->json($response);
     }
+
+    public function update(JenisBahayaRequest $request, $id)
+    {
+        $date = Carbon::now();
+        $data = array(
+            'nama_jenis_bahaya' => $request->nama_jenis_bahaya,
+            'updated_at' => $date,
+        );
+        DB::table('jenis_bahaya')->where('id', $id)->update($data);
+        return response()->json();
+    }
+
+    public function delete($id)
+    {
+        JenisBahayaModel::where('id', $id)->delete();
+        return response()->json();
+    }
+
 }
