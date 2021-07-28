@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
+Route::prefix('kecamatan')->group(function() {
+    Route::get('/index','Dashboard\KecamatanController@index')->name('kecamatan.index');
+    Route::post('/insert', 'Dashboard\KecamatanController@insert')->name('kecamatan.insert');
+    Route::get('edit/{id}', 'Dashboard\KecamatanController@edit');
+    Route::post('update/{id}', 'Dashboard\KecamatanController@update');
+    Route::delete('delete/{id}', 'Dashboard\KecamatanController@delete');
+    });
 Route::prefix('JenisBahaya')->group(function () {
     Route::get('/index', 'Dashboard\JenisBahayaController@index')->name('JenisBahaya.index');   
     Route::post('/insert', 'Dashboard\JenisBahayaController@insert')->name('JenisBahaya.insert');   
