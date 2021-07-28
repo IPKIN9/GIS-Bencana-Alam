@@ -200,8 +200,8 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class="">
-                                            <a href="" class="waves-effect waves-dark">
+                                        <li class="{{ Route::is('kabupaten.index') ? 'active' : '' }}">
+                                            <a href="{{route('kabupaten.index')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
                                                     data-i18n="nav.menu-levels.menu-level-23">Kabupaten</span>
