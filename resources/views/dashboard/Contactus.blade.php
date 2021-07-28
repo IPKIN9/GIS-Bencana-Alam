@@ -60,12 +60,15 @@ Tabel Contact Us
                                                             <td>{{$d->kantor_pos}}</td>
                                                             <td>{{$d->email}}</td>
                                                             <td>{{$d->telepon}}</td>
+                                                           
                                                             <td>
-                                                                <button style="height: 30px; width:30px;"
+                                                                <button id="btn_edit" data-id="{{$d->id}}"
+                                                                style="height: 30px; width:30px;"
                                                                 class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
                                                                     class="fa fa-edit"
                                                                     style="margin-left: 8px;"></i></button>
-                                                            <button style="height: 30px; width:30px;"
+                                                            <button id="btn_hapus" data-id="{{$d->id}}"
+                                                                style="height: 30px; width:30px;"
                                                                 class="btn waves-effect waves-light btn-danger btn-icon"><i
                                                                     class="fa fa-trash"
                                                                     style="margin-left: 9px;"></i></button>
@@ -159,7 +162,53 @@ Tabel Contact Us
 @section('js')
     <script>
         $(document).ready( function (){
+            $.ajaxSetup({
+                headers:{
+                    'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('contecnt')
+                }
+            })
             $('#contoh').DataTable();
+
+            $('body').on('click','#btn_edit',function() {
+                let dataId = $(this).data('id');
+                let $url = "edit/"+dataId;
+                $.get($url,function(data) {
+                    $('#modal_title').html('Edit Data Contact Us');
+                    $('#modal_body').html('');
+                    $('#univ_modal').modal('show');
+                    $('#modal_body').append(`
+                    <div class="form-group row">
+                        <input type="hidden" name="id" id="id" class="form-control" value="`+data.id+`" >
+                        <label class="col-sm-2 col-form-label">Alamat</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="alamat" id="alamat" value="`+data.alamat+`" class="form-control"
+                                placeholder="Alamat" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Kantor Pos</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="kantor_pos" id="kantor_pos" value="`+data.kantor_pos+`" class="form-control"
+                                placeholder="Kantor Pos" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="email" id="email" value="`+data.email+`" class="form-control"
+                                placeholder="Email" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Telepon</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="telepon" id="telepon" value="`+data.telepon+`" class="form-control"
+                                placeholder="Telepon" autocomplete="off" >
+                        </div>
+                    </div>
+                    `);
+                })
+            })
         });
     </script>
 @endsection

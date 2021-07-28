@@ -31,4 +31,15 @@ class ContactusController extends Controller
         DB::table('contactus')->insert($data);
         return redirect()->back()->with('status',' Data berhasil di simpan');
     }
+
+    public function edit($id)
+    {
+        $response = ContactModel::where('id', $id)->first();
+        return response()->json($response);
+    }
+
+    // public function update(ContactRequest $request, $id)
+    // {
+    //     $data
+    // }
 }
