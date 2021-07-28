@@ -10,8 +10,13 @@ class KecamatanModel extends Model
     protected $fillable = [
         'id',
         'nama_kecamatan',
+        'id_kabupaten',
         'koordinat',
         'created_at',
         'deleted_at'
     ];
+    public function kabupaten_role()
+    {
+        return $this->belongsTo(KabupatenModel::class, 'id_kabupaten');
+    }
 }
