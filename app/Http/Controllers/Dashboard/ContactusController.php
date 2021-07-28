@@ -14,7 +14,7 @@ class ContactusController extends Controller
     public function index()
     {
         $data=ContactModel::all();
-        return view('dashboard.Contactus')->with('data',$data);
+        return view('dashboard.ContactUs')->with('data',$data);
     }
 
     public function insert(ContactRequest $request)
