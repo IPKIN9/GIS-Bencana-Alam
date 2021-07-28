@@ -20,9 +20,9 @@ Page Table Contoh
             </div>
             @if (session('status'))
             <div class="card borderless-card">
-                <div class="card-block danger-breadcrumb">
+                <div class="card-block success-breadcrumb">
                     <div class="breadcrumb-header">
-                        <h5 class="text-success">{{ session('status') }}</h5>
+                        <h5><i class="ti-check"></i> {{ session('status') }}</h5>
                     </div>
                 </div>
             </div>
