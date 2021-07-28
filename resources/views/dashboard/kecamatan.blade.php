@@ -1,6 +1,6 @@
 @extends('layout.Dashboard')
 @section('title')
-Page Table Contoh
+Page Tabel Kecamatan
 @endsection
 @section('content')
 <div class="row">
@@ -55,7 +55,7 @@ Page Table Contoh
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Kecamatan</th>
-                                                        <th>Kordinat</th>
+                                                        <th>Koordinat</th>
                                                         <th>Created_at</th>
                                                         <th>Updated_at</th>
                                                         <th>Options</th>
@@ -69,7 +69,7 @@ Page Table Contoh
                                                         <tr>
                                                             <td>{{ $no++}}</td>
                                                             <td>{{ $d->nama_kecamatan}}</td>
-                                                            <td>{{ $d->kordinat}}</td>
+                                                            <td>{{ $d->koordinat}}</td>
                                                             <td>{{ $d->created_at}}</td>
                                                             <td>{{ $d->updated_at}}</td>
                                                             <td>
@@ -91,7 +91,7 @@ Page Table Contoh
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Kecamatan</th>
-                                                        <th>Kordinat</th>
+                                                        <th>Koordinat</th>
                                                         <th>Created_at</th>
                                                         <th>Updated_at</th>
                                                         <th>Options</th>
@@ -109,7 +109,7 @@ Page Table Contoh
                                         <h5>Tambah Data</h5>
                                     </div>
                                     <div class="card-block">
-                                        <h4 class="sub-title">Masukan Kecamatan (nama kecamatan)</h4>
+                                        <h4 class="sub-title">Masukan Nama Kecamatan</h4>
                                         <form method="post" action="{{ route('kecamatan.insert')}}">
                                             @csrf
                                             <div class="form-group row">
@@ -123,11 +123,11 @@ Page Table Contoh
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Kordinat</label>
+                                                <label class="col-sm-2 col-form-label">Koordinat</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control"
-                                                        placeholder="kordinat" autocomplete="off" name="kordinat">
-                                                    @error('kordinat')
+                                                        placeholder="koordinat" autocomplete="off" name="koordinat">
+                                                    @error('koordinat')
                                                         <p class="text text-danger mt-2">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -179,10 +179,10 @@ Page Table Contoh
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Kordinat</label>
+                    <label class="col-sm-2 col-form-label">Koordinat</label>
                     <div class="col-sm-10">
-                        <input value="`+ data.kordinat +`" name="kordinat" type="text" class="form-control"
-                            placeholder="Masukan kordinat" autocomplete="off">
+                        <input value="`+ data.koordinat +`" name="koordinat" type="text" class="form-control"
+                            placeholder="Masukan koordinat" autocomplete="off">
                     </div>
                 </div>
 

@@ -14,7 +14,7 @@ class KecamatanController extends Controller
     public function index()
     {
         $data = KecamatanModel::all();
-        return view('dashboard.kecamatan')->with('data',$data);
+        return view('dashboard.Kecamatan')->with('data',$data);
     }
 
     public function insert(KecamatanRequest $request)
@@ -22,7 +22,7 @@ class KecamatanController extends Controller
         $date = Carbon::now();
         $data = array(
             'nama_kecamatan' => $request->nama_kecamatan,
-            'kordinat' => $request->kordinat,
+            'koordinat' => $request->koordinat,
             'created_at' => $date,
             'updated_at' => $date
         );
@@ -41,7 +41,7 @@ class KecamatanController extends Controller
         $date = Carbon::now();
         $data = array(
             'nama_kecamatan' => $request->nama_kecamatan,
-            'kordinat' => $request->kordinat,
+            'koordinat' => $request->koordinat,
             'updated_at' => $date,
         );
         DB::table('kecamatan')->where('id', $id)->update($data);

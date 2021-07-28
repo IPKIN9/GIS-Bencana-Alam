@@ -16,14 +16,14 @@ class KecamatanRequest extends FormRequest
     {
         return [
             'nama_kecamatan' => 'required',
-            'kordinat' => 'required'
+            'koordinat' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
-            'required' => 'inputan tidak boleh kosong'
+            'required' => 'Field ini tidak boleh kosong'
         ];
     }
 }

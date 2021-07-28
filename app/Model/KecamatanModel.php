@@ -10,7 +10,7 @@ class KecamatanModel extends Model
     protected $fillable = [
         'id',
         'nama_kecamatan',
-        'kordinat',
+        'koordinat',
         'created_at',
         'deleted_at'
     ];
