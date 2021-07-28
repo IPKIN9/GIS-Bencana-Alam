@@ -8,12 +8,16 @@ use App\Model\KecamatanModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\KecamatanRequest;
+use App\Model\KabupatenModel;
 
 class KecamatanController extends Controller
 {
     public function index()
     {
-        $data = KecamatanModel::all();
+        $data = array(
+            'kecamatan' => KecamatanModel::with('kabupaten_role')->get(), 
+            'kabupaten' => KabupatenModel::all()
+        );
         return view('dashboard.Kecamatan')->with('data',$data);
     }
 
@@ -22,6 +26,7 @@ class KecamatanController extends Controller
         $date = Carbon::now();
         $data = array(
             'nama_kecamatan' => $request->nama_kecamatan,
+            'id_kabupaten' => $request->id_kabupaten,
             'koordinat' => $request->koordinat,
             'created_at' => $date,
             'updated_at' => $date
@@ -41,6 +46,7 @@ class KecamatanController extends Controller
         $date = Carbon::now();
         $data = array(
             'nama_kecamatan' => $request->nama_kecamatan,
+            'id_kabupaten' => $request->id_kabupaten,
             'koordinat' => $request->koordinat,
             'updated_at' => $date,
         );

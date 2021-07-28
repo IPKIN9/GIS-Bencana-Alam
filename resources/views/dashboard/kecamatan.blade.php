@@ -55,6 +55,7 @@ Page Tabel Kecamatan
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Kecamatan</th>
+                                                        <th>Nama Kabupaten</th>
                                                         <th>Koordinat</th>
                                                         <th>Created_at</th>
                                                         <th>Updated_at</th>
@@ -65,10 +66,11 @@ Page Tabel Kecamatan
                                                     @php
                                                         $no = 1;
                                                     @endphp
-                                                    @foreach($data as $d)
+                                                    @foreach($data ['kecamatan'] as $d)
                                                         <tr>
                                                             <td>{{ $no++}}</td>
                                                             <td>{{ $d->nama_kecamatan}}</td>
+                                                            <td>{{$d->kabupaten_role->nama_kabupaten}}</td>
                                                             <td>{{ $d->koordinat}}</td>
                                                             <td>{{ $d->created_at}}</td>
                                                             <td>{{ $d->updated_at}}</td>
@@ -91,6 +93,7 @@ Page Tabel Kecamatan
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Kecamatan</th>
+                                                        <th>Nama Kabupaten</th>
                                                         <th>Koordinat</th>
                                                         <th>Created_at</th>
                                                         <th>Updated_at</th>
@@ -118,6 +121,20 @@ Page Tabel Kecamatan
                                                     <input type="text" class="form-control"
                                                         placeholder="kecamatan" autocomplete="off" name="nama_kecamatan">
                                                     @error('nama_kecamatan')
+                                                        <p class="text text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Nama Kabupaten</label>
+                                                <div class="col-sm-10">
+                                                    <select name="id_kabupaten" class="form-control">
+                                                        <option selected disabled>--Pilih Nama Kabupaten--</option>
+                                                        @foreach ($data ['kabupaten'] as $d)
+                                                        <option value="{{$d->id}}">{{$d->nama_kabupaten}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('id_kabupaten')
                                                         <p class="text text-danger mt-2">{{ $message }}</p>
                                                     @enderror
                                                 </div>
@@ -179,6 +196,17 @@ Page Tabel Kecamatan
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nama Kabupaten</label>
+                    <div class="col-sm-10">
+                        <select name="id_kabupaten" id="id_kabupaten" class="form-control">
+                            <option selected disabled>--Pilih Nama Kabupaten--</option>
+                            @foreach ($data ['kabupaten'] as $d)
+                            <option value="{{$d->id}}">{{$d->nama_kabupaten}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Koordinat</label>
                     <div class="col-sm-10">
                         <input value="`+ data.koordinat +`" name="koordinat" type="text" class="form-control"
@@ -187,7 +215,7 @@ Page Tabel Kecamatan
                 </div>
 
                 `);
-                
+                $('#id_kabupaten').val(data.id_kabupaten)
             });
         });
 

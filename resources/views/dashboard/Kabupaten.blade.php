@@ -10,7 +10,7 @@ Page Tabel Kabupaten
                 <div class="row">
                     <div class="col-lg-12 col-xl-12">
                         @if ($errors->any())
-                            <div class="card borderless-card">
+                        <div class="card borderless-card">
                             <div class="card-block danger-breadcrumb">
                                 <div class="breadcrumb-header">
                                     <h5><i class="ti-alert"></i> Data tidak tersimpan</h5>
@@ -55,7 +55,6 @@ Page Tabel Kabupaten
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Kabupaten</th>
-                                                        <th>Nama Kecamatan</th>
                                                         <th>Created_at</th>
                                                         <th>Updated_at</th>
                                                         <th>Options</th>
@@ -63,16 +62,15 @@ Page Tabel Kabupaten
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $no = 1;
+                                                    $no = 1;
                                                     @endphp
                                                     @foreach($data['kabupaten'] as $d)
-                                                        <tr>
-                                                            <td>{{ $no++}}</td>
-                                                            <td>{{ $d->nama_kabupaten}}</td>
-                                                            <td>{{ $d->kecamatan_role->nama_kecamatan}}</td>
-                                                            <td>{{ $d->created_at}}</td>
-                                                            <td>{{ $d->updated_at}}</td>
-                                                            <td>
+                                                    <tr>
+                                                        <td>{{ $no++}}</td>
+                                                        <td>{{ $d->nama_kabupaten}}</td>
+                                                        <td>{{ $d->created_at}}</td>
+                                                        <td>{{ $d->updated_at}}</td>
+                                                        <td>
                                                             <button id="btn_edit" data-id="{{$d->id}}"
                                                                 style="height: 30px; width: 30px;"
                                                                 class="mr-2 btn waves-effects weves-light btn-primary btn-icon">
@@ -83,15 +81,14 @@ Page Tabel Kabupaten
                                                                 class="btn waves-effects weves-light btn-danger btn-icon">
                                                                 <i class="fa fa-trash" style="margin-left: 9px;"></i>
                                                             </button>
-                                                            </td>
-                                                        </tr>
+                                                        </td>
+                                                    </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Nama Kabupaten</th>
-                                                        <th>Nama Kecamatan</th>
                                                         <th>Created_at</th>
                                                         <th>Updated_at</th>
                                                         <th>Options</th>
@@ -115,32 +112,18 @@ Page Tabel Kabupaten
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Nama Kabupaten</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Kabupaten" autocomplete="off" name="nama_kabupaten">
+                                                    <input type="text" class="form-control" placeholder="Kabupaten"
+                                                        autocomplete="off" name="nama_kabupaten">
                                                     @error('nama_kabupaten')
-                                                        <p class="text text-danger mt-2">{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Nama Kecamatan</label>
-                                                <div class="col-sm-10">
-                                                    <select name="id_kecamatan" class="form-control">
-                                                        <option selected disabled>--Pilih Kecamatan--</option>
-                                                        @foreach ($data['kecamatan'] as $d)
-                                                          <option value="{{$d->id}}">{{$d->nama_kecamatan}}</option>  
-                                                        @endforeach
-                                                    </select>
-                                                    @error('nama_kecamatan')
-                                                        <p class="text text-danger mt-2">{{ $message }}</p>
+                                                    <p class="text text-danger mt-2">{{ $message }}</p>
                                                     @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
-                                                    <button
-                                                        class="btn waves-effect waves-light btn-primary" type="submit">Simpan</button>
+                                                    <button class="btn waves-effect waves-light btn-primary"
+                                                        type="submit">Simpan</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -182,19 +165,7 @@ Page Tabel Kabupaten
                             placeholder="Autocomplete Off" autocomplete="off">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Nama Kecamatan</label>
-                    <div class="col-sm-10">
-                        <select name="id_kecamatan" id="id_kecamatan" class="form-control">
-                            <option selected disabled>--Pilih Kecamatan--</option>
-                            @foreach ($data['kecamatan'] as $d)
-                                <option value="{{$d->id}}">{{$d->nama_kecamatan}}</option>  
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                `);
-                $('#id_kecamatan').val(data.id_kecamatan)                
+                `);            
             });
         });
 

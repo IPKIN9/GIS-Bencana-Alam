@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class KabupatenRequest extends FormRequest
 {
-        public function authorize()
+    public function authorize()
     {
         return true;
     }
@@ -14,15 +14,14 @@ class KabupatenRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_kabupaten'=>'required',
-            'id_kecamatan'=>'required'
+            'nama_kabupaten' => 'required',
         ];
     }
 
     public function messages()
     {
-        return[
-            'required'=>'field ini tidak boleh kosong'
+        return [
+            'required' => 'field ini tidak boleh kosong'
         ];
     }
 }
