@@ -38,8 +38,22 @@ class ContactusController extends Controller
         return response()->json($response);
     }
 
-    // public function update(ContactRequest $request, $id)
-    // {
-    //     $data
-    // }
+    public function update(ContactRequest $request, $id)
+    {
+        $date = Carbon::now();
+        $data = array(
+            'alamat' => $request->alamat,
+            'kantor_pos'=>$request->kantor_pos,
+            'email'=>$request->email,
+            'telepon'=>$request->telepon, 
+            'updated_at'=>$date
+        );
+        DB::table('contactus')->where('id', $id)->update($data);
+        return response()->json();
+    }
+    public function delete($id)
+    {
+        ContactModel::where('id', $id)->delete();
+        return response()->json();
+    }
 }
