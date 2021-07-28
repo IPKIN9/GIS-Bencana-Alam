@@ -47,4 +47,10 @@ class ContohController extends Controller
         DB::table('contoh')->where('id', $id)->update($data);
         return response()->json();
     }
+
+    public function delete($id)
+    {
+        ContohModel::where('id', $id)->delete();
+        return response()->json();
+    }
 }

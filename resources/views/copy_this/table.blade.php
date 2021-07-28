@@ -6,18 +6,30 @@ Page Table Contoh
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header">
-                <h4>Data (nama data)</h4>
+            @if ($errors->any())
+            <div class="card borderless-card">
+                <div class="card-block danger-breadcrumb">
+                    <div class="breadcrumb-header">
+                        <h5><i class="ti-alert"></i> Data tidak tersimpan</h5>
+                    </div>
+                </div>
             </div>
+            @endif
+            <div class="card-header">
+                <h3>Data (nama data)</h3>
+            </div>
+            @if (session('status'))
+            <div class="card borderless-card">
+                <div class="card-block danger-breadcrumb">
+                    <div class="breadcrumb-header">
+                        <h5 class="text-success">{{ session('status') }}</h5>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="card-block tab-icon">
                 <div class="row">
                     <div class="col-lg-12 col-xl-12">
-                        @if ($errors->any())
-                        <p class="text-danger">Ada yang error !</p>
-                        @endif
-                        @if (session('status'))
-                        <p class="text-success">{{ session('status') }}</p>
-                        @endif
                         <ul class="nav nav-tabs md-tabs " role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#table" role="tab"><i
@@ -204,6 +216,45 @@ Page Table Contoh
                         title: 'Oops...',
                         text: 'Ada yang salah!',
                     });
+                }
+            })
+        });
+
+        $(document).on('click', '#btn_hapus', function () {
+            let dataId = $(this).data('id');
+            Swal.fire({
+            title: 'Anda Yakin?',
+            text: "Data ini mungkin terhubung ke tabel yang lain!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "delete/" + dataId,
+                        type: 'delete',
+                        success: function () {
+                            Swal.fire({
+                                title: 'Terhapus!',
+                                text: 'Data berhasl di hapus.',
+                                icon: 'warning',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oke'
+                            }).then((result) => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Ada yang salah!',
+                            });
+                        }
+                    })
                 }
             })
         });
