@@ -6,9 +6,27 @@ Page Table Contoh
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header">
-                <h4>Data (nama data)</h4>
+            @if ($errors->any())
+            <div class="card borderless-card">
+                <div class="card-block danger-breadcrumb">
+                    <div class="breadcrumb-header">
+                        <h5><i class="ti-alert"></i> Data tidak tersimpan</h5>
+                    </div>
+                </div>
             </div>
+            @endif
+            <div class="card-header">
+                <h3>Data (nama data)</h3>
+            </div>
+            @if (session('status'))
+            <div class="card borderless-card">
+                <div class="card-block danger-breadcrumb">
+                    <div class="breadcrumb-header">
+                        <h5 class="text-success">{{ session('status') }}</h5>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="card-block tab-icon">
                 <div class="row">
                     <div class="col-lg-12 col-xl-12">
@@ -32,34 +50,52 @@ Page Table Contoh
                                     </div>
                                     <div class="card-block table-border-style">
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table id="contoh" class="display" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Username</th>
+                                                        <th>No</th>
+                                                        <th>Nama</th>
+                                                        <th>Keterangan</th>
+                                                        <th>Created_at</th>
+                                                        <th>Updated_at</th>
                                                         <th>Option</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @php
+                                                    $no = 1;
+                                                    @endphp
+                                                    @foreach ($data as $d)
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
+                                                        <td>{{$no++}}</td>
+                                                        <td>{{$d->nama}}</td>
+                                                        <td>{{$d->ket}}</td>
+                                                        <td>{{date('d-m-Y', strtotime($d->created_at))}}</td>
+                                                        <td>{{date('d-m-Y', strtotime($d->updated_at))}}</td>
                                                         <td>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-primary btn-icon"><i
-                                                                    class="fa fa-edit"
-                                                                    style="margin-left: 9px;"></i></button>
-                                                            <button
-                                                                class="btn waves-effect waves-light btn-danger btn-icon"><i
-                                                                    class="fa fa-trash"
-                                                                    style="margin-left: 11px;"></i></button>
+                                                            <button id="btn_edit" data-id="{{$d->id}}"
+                                                                style="height: 30px; width: 30px;"
+                                                                class="mr-2 btn waves-effects weves-light btn-primary btn-icon">
+                                                                <i class="fa fa-edit" style="margin-left: 8px;"></i>
+                                                            </button>
+                                                            <button id="btn_hapus" data-id="{{$d->id}}"
+                                                                style="height: 30px; width: 30px;"
+                                                                class="btn waves-effects weves-light btn-danger btn-icon">
+                                                                <i class="fa fa-trash" style="margin-left: 9px;"></i>
+                                                            </button>
                                                         </td>
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Nama</th>
+                                                        <th>Keterangan</th>
+                                                        <th>Created_at</th>
+                                                        <th>Updated_at</th>
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>
@@ -72,104 +108,34 @@ Page Table Contoh
                                     </div>
                                     <div class="card-block">
                                         <h4 class="sub-title">Masukan Data (nama data)</h4>
-                                        <form>
+                                        <form method="POST" action="{{route('contoh.insert')}}">
+                                            @csrf
+
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Simple Input</label>
+                                                <label class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Read only</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="You can't change me" readonly="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Disable Input</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" placeholder="Disabled text"
-                                                        disabled="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Predefine
-                                                    Input</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                        value="Enter yout content after me">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Select Box</label>
-                                                <div class="col-sm-10">
-                                                    <select name="select" class="form-control">
-                                                        <option value="opt1">Select One Value Only</option>
-                                                        <option value="opt2">Type 2</option>
-                                                        <option value="opt3">Type 3</option>
-                                                        <option value="opt4">Type 4</option>
-                                                        <option value="opt5">Type 5</option>
-                                                        <option value="opt6">Type 6</option>
-                                                        <option value="opt7">Type 7</option>
-                                                        <option value="opt8">Type 8</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Round Input</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control form-control-round"
-                                                        placeholder=".form-control-round">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Maximum
-                                                    Length</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Content must be in 6 characters" maxlength="6">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Disable
-                                                    Autocomplete</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control"
+                                                    <input name="nama" type="text" class="form-control"
                                                         placeholder="Autocomplete Off" autocomplete="off">
+                                                    @error('nama')
+                                                    <p class="text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
+
                                             <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Static Text</label>
+                                                <label class="col-sm-2 col-form-label">Keterangan</label>
                                                 <div class="col-sm-10">
-                                                    <div class="form-control-static">Hello !... This is
-                                                        static text
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Color</label>
-                                                <div class="col-sm-10">
-                                                    <input type="color" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Upload File</label>
-                                                <div class="col-sm-10">
-                                                    <input type="file" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2 col-form-label">Textarea</label>
-                                                <div class="col-sm-10">
-                                                    <textarea rows="5" cols="5" class="form-control"
+                                                    <textarea name="ket" rows="5" cols="5" class="form-control"
                                                         placeholder="Default textarea"></textarea>
+                                                    @error('ket')
+                                                    <p class="text-danger mt-2">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
-                                                    <button
+                                                    <button type="submit"
                                                         class="btn waves-effect waves-light btn-primary">Simpan</button>
                                                 </div>
                                             </div>
@@ -184,4 +150,114 @@ Page Table Contoh
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready( function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        
+        $('#contoh').DataTable();
+
+        $('body').on('click','#btn_edit',function(){
+            let dataId = $(this).data('id');
+            let $url = "edit/"+dataId;
+            $.get($url,function(data){
+                $('#modal_title').html('Edit data contoh');
+                $('#modal_body').html('');
+                $('#univ_modal').modal('show');
+                $('#modal_body').append(`
+                <div class="form-group row">
+                    <input type="hidden" id="id" name="id" value="`+ data.id +`">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input value="`+ data.nama +`" name="nama" type="text" class="form-control"
+                            placeholder="Autocomplete Off" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Keterangan</label>
+                    <div class="col-sm-10">
+                        <textarea id="ket" name="ket" rows="5" cols="5" class="form-control"
+                            placeholder="Default textarea"></textarea>
+                    </div>
+                </div>
+                `);
+                $('#ket').val(data.ket)
+            });
+        });
+
+        $('body').on('click', '#btn_save', function () {
+            let id = $('#formInput').find('#id').val();
+            let formData = $('#formInput').serialize();
+            $.ajax({
+                url: 'update/'+id,
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    $('#univ_modal').modal('hide');
+                    Swal.fire({
+                        title: 'Update!',
+                        text: 'Data berhasl di perbaharui.',
+                        icon: 'success',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Oke'
+                        }).then((result) => {
+                            location.reload();
+                        });
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ada yang salah!',
+                    });
+                }
+            })
+        });
+
+        $(document).on('click', '#btn_hapus', function () {
+            let dataId = $(this).data('id');
+            Swal.fire({
+            title: 'Anda Yakin?',
+            text: "Data ini mungkin terhubung ke tabel yang lain!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "delete/" + dataId,
+                        type: 'delete',
+                        success: function () {
+                            Swal.fire({
+                                title: 'Terhapus!',
+                                text: 'Data berhasl di hapus.',
+                                icon: 'warning',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oke'
+                            }).then((result) => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Ada yang salah!',
+                            });
+                        }
+                    })
+                }
+            })
+        });
+    } );
+</script>
 @endsection
