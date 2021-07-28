@@ -119,6 +119,9 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
+
+                                    <img src="{{ asset('assets')}}assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+
                                     <img src="{{ asset('assets/images/avatar-4.jpg') }}" class="img-radius"
                                         alt="User-Profile-Image">
                                     <span>John Doe</span>
@@ -189,8 +192,8 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class="">
-                                            <a href="" class="waves-effect waves-dark">
+                                        <li class="{{ Route::is('kecamatan.index') ? 'active' : '' }}">
+                                            <a href="{{ route('kecamatan.index')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
                                                     data-i18n="nav.menu-levels.menu-level-23">Kecamatan</span>
@@ -212,8 +215,8 @@
                                 menu-title-theme="theme1">Informasi Website</div>
                             <ul class="pcoded-item pcoded-left-item" item-border="true" item-border-style="none"
                                 subitem-border="true">
-                                <li class="">
-                                    <a href="" class="waves-effect waves-dark">
+                                <li class="{{ Route::is('webdescription.index') ? 'active' : '' }}">
+                                    <a href="{{route('webdescription.index')}}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Deskripsi
                                             Web</span>
