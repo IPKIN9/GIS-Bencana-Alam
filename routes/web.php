@@ -39,6 +39,13 @@ Route::prefix('webdescription')->group(function () {
     Route::post('update/{id}','Dashboard\WebDescriptionController@update');
     Route::delete('delete/{id}','Dashboard\WebDescriptionController@delete');
 });
+Route::prefix('kabupaten')->group(function () {
+    Route::get('/index','Dashboard\KabupatenController@index')->name('kabupaten.index');
+    Route::post('/insert','Dashboard\KabupatenController@insert')->name('kabupaten.insert');
+    Route::get('edit/{id}','Dashboard\KabupatenController@edit');
+    Route::post('update/{id}','Dashboard\KabupatenController@update');
+    Route::delete('delete/{id}','Dashboard\KabupatenController@delete');
+});
 Route::prefix('contoh')->group(function () {
     Route::get('/index', 'Dashboard\ContohController@index')->name('contoh.index');
     Route::post('/insert', 'Dashboard\ContohController@insert')->name('contoh.insert');
