@@ -16,6 +16,7 @@ class KecamatanRequest extends FormRequest
     {
         return [
             'nama_kecamatan' => 'required',
+            'id_kabupaten' => 'required',
             'koordinat' => 'required'
         ];
     }
