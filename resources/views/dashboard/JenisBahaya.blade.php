@@ -56,17 +56,19 @@ Jenis Bahaya
                                                     <tr>
                                                         <td>{{$no++}}</td>
                                                         <td>{{$d->nama_jenis_bahaya}}</td>
-                                                        <td>{{$d->created_at}}</td>
-                                                        <td>{{$d->updated_at}}</td>
+                                                        <td>{{date('d-m-y',strtotime($d->created_at))}}</td>
+                                                        <td>{{date('d-m-y',strtotime($d->updated_at))}}</td>
                                                         <td>
-                                                            <button style="height: 30px; width: 30px;"
-                                                                class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
-                                                                    class="fa fa-edit"
-                                                                    style="margin-left: 9px;"></i></button>
-                                                            <button style="height: 30px; width: 30px;"
-                                                                class="mr-2 btn waves-effect waves-light btn-danger btn-icon"><i
-                                                                    class="fa fa-trash"
-                                                                    style="margin-left: 11px;"></i></button>
+                                                            <button id="btn_edit" data-id="{{$d->id}}"
+                                                                style="height: 30px; width: 30px;"
+                                                                class="mr-2 btn waves-effect waves-light btn-primary btn-icon">
+                                                                <i class="fa fa-edit" style="margin-left: 9px;"></i>
+                                                            </button>
+                                                            <button id="btn_hapus" data-id="{{$d->id}}"
+                                                                style=" height: 30px; width: 30px;"
+                                                                class="mr-2 btn waves-effect waves-light btn-danger btn-icon">
+                                                                <i class="fa fa-trash" style="margin-left: 9px;"></i>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -94,7 +96,6 @@ Jenis Bahaya
                                         <h4 class="sub-title">Masukan Data Jenis Bahaya</h4>
                                         <form method="POST" action="{{route('JenisBahaya.insert')}}">
                                             @csrf
-
                                             <div class="form-group row">
                                                 <label class="col-sm-2 col-form-label">Nama Jenis Bahaya</label>
                                                 <div class="col-sm-10">
@@ -108,8 +109,8 @@ Jenis Bahaya
                                             <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
-                                                    <button
-                                                        class="btn waves-effect waves-light btn-primary" type="submit">Simpan</button>
+                                                    <button class="btn waves-effect waves-light btn-primary"
+                                                        type="submit">Simpan</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -127,7 +128,32 @@ Jenis Bahaya
 @section('js')
 <script>
     $(document).ready( function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
             $('#contoh').DataTable();
+
+            $('body').on('click','#btn_edit',function(){
+                let dataId = $(this).data('id');
+                let $url = "edit/"+dataId;
+                $.get($url,function(data){
+                    $('#modal_title').html('Edit data jenis bahaya');
+                    $('#modal_body').html('');
+                    $('#univ_modal').modal('show');
+                    $('#modal_body').append(`
+                    <div class="form-group row">
+                        <input type="hidden" name="id" id="id" class="form-control" value="`+data.id+`" autocomplete="off">
+                        <label class="col-sm-3 col-form-label">Nama Jenis Bahaya</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="nama_jenis_bahaya" value="`+data.nama_jenis_bahaya+`" class="form-control"
+                                placeholder="Nama Jenis Bahaya" autocomplete="off">
+                        </div>
+                    </div>
+                    `);
+                });
+            });
         } );
 </script>
 @endsection

@@ -31,4 +31,9 @@ class JenisBahayaController extends Controller
 
     }
 
+    public function edit($id)
+    {
+        $response = JenisBahayaModel::where('id',$id)->first();
+        return response()->json($response);
+    }
 }
