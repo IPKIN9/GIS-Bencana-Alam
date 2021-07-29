@@ -18,9 +18,14 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             return redirect(route('home.index'));
+        } else {
+            return redirect(route('login'))->with('status', ' Username dan Password tidak ditemukan');
         }
-        else{
-            return redirect(route('login'))->with('status',' Username dan Password tidak ditemukan');
-        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect(route('login'))->with('status', 'Logout Berhasil');
     }
 }

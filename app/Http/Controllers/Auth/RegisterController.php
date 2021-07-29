@@ -11,21 +11,21 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-   public function index()
-   {
-       return view('Auth.Register');
-   }
-   public function insert(UsersRequest $request)
-   {
-       $date=Carbon::now();
-       $data = array(
-           'full_name' =>$request->full_name ,
-           'username'  =>$request->username,
-           'password' => Hash::make($request->password),
-           'created_at'=>$date,
-           'updated_at'=>$date
+    public function index()
+    {
+        return view('Auth.Register');
+    }
+    public function insert(UsersRequest $request)
+    {
+        $date = Carbon::now();
+        $data = array(
+            'full_name' => $request->full_name,
+            'username'  => $request->username,
+            'password' => Hash::make($request->password),
+            'created_at' => $date,
+            'updated_at' => $date
         );
         DB::table('users')->insert($data);
-        return redirect('auth/login')->with('data',$data);
-   }
+        return redirect(route('login'))->with('status', 'Akub berhasil terdaftar');
+    }
 }

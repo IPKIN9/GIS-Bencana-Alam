@@ -119,17 +119,14 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-
-                                    <img src="{{ asset('assets')}}assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-
-                                    <img src="{{ asset('assets/images/avatar-4.jpg') }}" class="img-radius"
+                                    <img src="{{ asset('assets/images/avatar-x.png') }}" class="img-radius"
                                         alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <span>{{Auth::user()->full_name}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li class="waves-effect waves-light">
-                                        <a href="auth-normal-sign-in.html">
+                                        <a href="{{route('logout')}}">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>
@@ -147,10 +144,10 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="{{ asset('assets/images/avatar-4.jpg') }}"
+                                    <img class="img-80 img-radius" src="{{ asset('assets/images/avatar-x.png') }}"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">John Doe</span>
+                                        <span id="more-details">{{Auth::user()->full_name}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +165,12 @@
                                 menu-title-theme="theme1">Master Data</div>
                             <ul class="pcoded-item pcoded-left-item" item-border="true" item-border-style="none"
                                 subitem-border="true">
-                                <li class="pcoded-hasmenu" dropdown-icon="style3" subitem-icon="style7">
+                                <li class="pcoded-hasmenu
+                                {{ Route::is('kelas.index') ? 'active' : '' }}
+                                {{ Route::is('JenisBahaya.index') ? 'active' : '' }}
+                                {{ Route::is('kecamatan.index') ? 'active' : '' }}
+                                {{ Route::is('kabupaten.index') ? 'active' : '' }}" dropdown-icon="style3"
+                                    subitem-icon="style7">
                                     <a href="#" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Semua
@@ -192,19 +194,19 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class="{{ Route::is('kecamatan.index') ? 'active' : '' }}">
-                                            <a href="{{ route('kecamatan.index')}}" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.menu-levels.menu-level-23">Kecamatan</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
                                         <li class="{{ Route::is('kabupaten.index') ? 'active' : '' }}">
                                             <a href="{{route('kabupaten.index')}}" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext"
                                                     data-i18n="nav.menu-levels.menu-level-23">Kabupaten</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="{{ Route::is('kecamatan.index') ? 'active' : '' }}">
+                                            <a href="{{ route('kecamatan.index')}}" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext"
+                                                    data-i18n="nav.menu-levels.menu-level-23">Kecamatan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -235,8 +237,8 @@
                                 menu-title-theme="theme1">Data Kasus</div>
                             <ul class="pcoded-item pcoded-left-item" item-border="true" item-border-style="none"
                                 subitem-border="true">
-                                <li>
-                                    <a href="" class="waves-effect waves-dark">
+                                <li class="{{ Route::is('kasus.index') ? 'active' : '' }}">
+                                    <a href="{{route('kasus.index')}}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Kasus
                                             Bencana</span>
