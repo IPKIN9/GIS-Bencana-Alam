@@ -14,6 +14,7 @@ use App\Model\KelasModel;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class KasusController extends Controller
 {
@@ -84,5 +85,36 @@ class KasusController extends Controller
         );
         DB::table('kasus')->insert($data);
         return redirect()->back()->with('status', 'Data berhasil disimpan');
+    }
+
+    public function edit($id)
+    {
+        $response = KasusModel::where('id', $id)->with('bahaya_rol')->first();
+        return response()->json($response);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $date = Carbon::now();
+        $data = array(
+            'id_jenis_bahaya' => $request->id_jenis_bahaya,
+            'total_luas_bahaya' => $request->total_luas_bahaya,
+            'id_kelas' => $request->id_kelas,
+            'jumlah_penduduk_terpapar' => $request->jumlah_penduduk_terpapar,
+            'total_kerugian' => $request->total_kerugian,
+            'kelas_kerugian' => $request->kelas_kerugian,
+            'kelas_kerusakan' => $request->kelas_kerusakan,
+            'updated_at' => $date
+        );
+        BahayaModel::where('id', $id)->update($data);
+        return response()->json();
+    }
+
+    public function delete($id)
+    {
+        $where = KasusModel::where('id', $id)->value('id_bahaya');
+        KasusModel::where('id', $id)->delete();
+        BahayaModel::where('id', $where)->delete();
+        return response()->json();
     }
 }

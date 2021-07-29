@@ -23,8 +23,4 @@ class KasusModel extends Model
     {
         return $this->belongsTo(BahayaModel::class, 'id_bahaya');
     }
-    // public function deep_jenis_bahaya()
-    // {
-    //     return $this->hasManyThrough(JenisBahayaModel::class,);
-    // }
 }

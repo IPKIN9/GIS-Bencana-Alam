@@ -59,4 +59,7 @@ Route::prefix('kasus')->group(function () {
     Route::post('/insert', 'Dashboard\KasusController@insert')->name('kasus.insert');
     Route::post('detail/post', 'Dashboard\KasusController@bahaya_insert');
     Route::delete('delete/detail/{id}', 'Dashboard\KasusController@delete_detail');
+    Route::get('edit/{id}', 'Dashboard\KasusController@edit');
+    Route::post('update/{id}', 'Dashboard\KasusController@update');
+    Route::delete('delete/{id}', 'Dashboard\KasusController@delete');
 });

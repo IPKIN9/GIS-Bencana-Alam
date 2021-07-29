@@ -56,6 +56,7 @@ Page Tabel Kasus
                                                         <th>#</th>
                                                         <th>Nama Kabupaten/Kota</th>
                                                         <th>Nama Kecamatan</th>
+                                                        <th>Jenis Bahaya</th>
                                                         <th>Luas Bahaya</th>
                                                         <th>Options</th>
                                                     </tr>
@@ -66,10 +67,12 @@ Page Tabel Kasus
                                                     @endphp
                                                     @foreach($data['kasus'] as $d)
                                                     <tr>
-                                                        <td>{{ $no++}}</td>
-                                                        <td>{{ $d->kabupaten_rol->nama_kabupaten}}</td>
-                                                        <td>{{ $d->kecamatan_rol->nama_kecamatan}}</td>
-                                                        <td>{{ $d->bahaya_rol->total_luas_bahaya}} Km</td>
+                                                        <td>{{$no++}}</td>
+                                                        <td>{{$d->kabupaten_rol->nama_kabupaten}}</td>
+                                                        <td>{{$d->kecamatan_rol->nama_kecamatan}}</td>
+                                                        <td>{{$d->bahaya_rol->jenis_bahaya_rol->nama_jenis_bahaya}}
+                                                        </td>
+                                                        <td>{{$d->bahaya_rol->total_luas_bahaya}} Km</td>
                                                         <td>
                                                             <button id="btn_edit" data-id="{{$d->id}}"
                                                                 style="height: 30px; width: 30px;"
@@ -90,6 +93,7 @@ Page Tabel Kasus
                                                         <th>#</th>
                                                         <th>Nama Kabupaten/Kota</th>
                                                         <th>Nama Kecamatan</th>
+                                                        <th>Jenis Bahaya</th>
                                                         <th>Luas Bahaya</th>
                                                         <th>Options</th>
                                                     </tr>
@@ -196,7 +200,7 @@ Page Tabel Kasus
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Jenis Bahaya</label>
                                         <div class="col-sm-10">
-                                            <select id="id_jenis_bahaya" name="id_jenis_bahaya" class="form-control">
+                                            <select name="id_jenis_bahaya" class="form-control">
                                                 <option selected disabled>--Pilih Jenis Bahaya--</option>
                                                 @foreach ($data['jenis_bahaya'] as $d)
                                                 <option data-id="{{$d->d}}" value="{{$d->id}}">
@@ -222,7 +226,7 @@ Page Tabel Kasus
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Kelas Bahaya</label>
                                         <div class="col-sm-10">
-                                            <select name="id_kelas" id="id_kelas" class="form-control">
+                                            <select name="id_kelas" class="form-control">
                                                 <option disabled selected>--Pilih Kelas Bahaya--
                                                 </option>
                                                 @foreach ($data['kelas'] as $d)
@@ -250,7 +254,7 @@ Page Tabel Kasus
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Total Kerugian</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="total_kerugian" id="total_kerugian"
+                                            <input type="text" name="total_kerugian"
                                                 class="form-control" placeholder="Autocomplete Off"
                                                 autocomplete="off">
                                         </div>
@@ -260,7 +264,7 @@ Page Tabel Kasus
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Kelas Kerugian</label>
                                         <div class="col-sm-10">
-                                            <select name="kelas_kerugian" id="kelas_kerugian"
+                                            <select name="kelas_kerugian"
                                                 class="form-control">
                                                 <option disabled selected>--Pilih Kelas Kerugian--
                                                 </option>
@@ -278,7 +282,7 @@ Page Tabel Kasus
                                     <div class="form-group row">
                                         <label class="col-sm-4 col-form-label">Kelas Kerusakan</label>
                                         <div class="col-sm-10">
-                                            <select name="kelas_kerusakan" id="kelas_kerusakan"
+                                            <select name="kelas_kerusakan"
                                                 class="form-control">
                                                 <option disabled selected>--Pilih Kelas Kerusakan--
                                                 </option>
@@ -364,94 +368,220 @@ Page Tabel Kasus
             });
         });
 
-        // $('body').on('click','#btn_edit',function(){
-        //     let dataId = $(this).data('id');
-        //     let $url = "edit/"+dataId;
-        //     $.get($url,function(data){
-        //         $('#modal_title').html('Edit data Kecamatan');
-        //         $('#modal_body').html('');
-        //         $('#univ_modal').modal('show');
-        //         $('#modal_body').append(`
-        //         <div class="form-group row">
-        //             <input type="hidden" id="id" name="id" value="`+ data.id +`">
-        //             <label class="col-sm-2 col-form-label">Nama Kecamatan</label>
-        //             <div class="col-sm-10">
-        //                 <input value="`+ data.nama_kabupaten +`" name="nama_kabupaten" type="text" class="form-control"
-        //                     placeholder="Autocomplete Off" autocomplete="off">
-        //             </div>
-        //         </div>
-        //         `);
-        //         $('#id_kecamatan').val(data.id_kecamatan)                
-        //     });
-        // });
+        $('body').on('click','#btn_edit',function(){
+            let dataId = $(this).data('id');
+            let $url = "edit/"+dataId;
+            $.get($url,function(data){
+                $('#modal_title').html('Edit Data Kasus');
+                $('#modal_body').html('');
+                $('#univ_modal').modal('show');
+                $('#modal_body').append(`
+                    <div class="card-block" style="margin-left:50px;">
+                        <input type="hidden" id="id_bahaya" value="`+ data.id_bahaya +`" name="id">
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Nama Kabupaten</label>
+                            <div class="col-sm-10">
+                                <select disabled name="id_kabupaten" class="form-control">
+                                    @foreach ($data['kabupaten'] as $d)
+                                    <option data-id="{{$d->d}}" value="{{$d->id}}">
+                                        {{$d->nama_kabupaten}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Nama Kecamatan</label>
+                            <div class="col-sm-10">
+                                <select disabled name="id_kecamatan"
+                                    class="form-control">
+                                    @foreach ($data['kecamatan'] as $d)
+                                    <option data-id="{{$d->d}}" value="{{$d->id}}">
+                                        {{$d->nama_kecamatan}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Jenis Bahaya</label>
+                                        <div class="col-sm-10">
+                                            <select id="id_jenis_bahaya" name="id_jenis_bahaya" class="form-control">
+                                                <option selected disabled>--Pilih Jenis Bahaya--</option>
+                                                @foreach ($data['jenis_bahaya'] as $d)
+                                                <option data-id="{{$d->d}}" value="{{$d->id}}">
+                                                    {{$d->nama_jenis_bahaya}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Total Luas Bahaya</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" value="`+ data.bahaya_rol.total_luas_bahaya +`" name="total_luas_bahaya"
+                                                class="form-control" placeholder="Autocomplete Off"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Kelas Bahaya</label>
+                                        <div class="col-sm-10">
+                                            <select name="id_kelas" id="id_kelas" class="form-control">
+                                                <option disabled selected>--Pilih Kelas Bahaya--
+                                                </option>
+                                                @foreach ($data['kelas'] as $d)
+                                                <option data-id="{{$d->d}}" value="{{$d->id}}">
+                                                    {{$d->nama_kelas}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Penduduk Yang
+                                            Terpapar</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="jumlah_penduduk_terpapar"
+                                                value="`+ data.bahaya_rol.jumlah_penduduk_terpapar +`" class="form-control"
+                                                placeholder="Autocomplete Off" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Total Kerugian</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="total_kerugian" value="`+ data.bahaya_rol.total_kerugian +`"
+                                                class="form-control" placeholder="Autocomplete Off"
+                                                autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Kelas Kerugian</label>
+                                        <div class="col-sm-10">
+                                            <select name="kelas_kerugian" id="kelas_kerugian"
+                                                class="form-control">
+                                                <option disabled selected>--Pilih Kelas Kerugian--
+                                                </option>
+                                                @foreach ($data['kelas'] as $d)
+                                                <option data-id="{{$d->d}}" value="{{$d->id}}">
+                                                    {{$d->nama_kelas}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Kelas Kerusakan</label>
+                                        <div class="col-sm-10">
+                                            <select name="kelas_kerusakan" id="kelas_kerusakan"
+                                                class="form-control">
+                                                <option disabled selected>--Pilih Kelas Kerusakan--
+                                                </option>
+                                                @foreach ($data['kelas'] as $d)
+                                                <option data-id="{{$d->d}}" value="{{$d->id}}">
+                                                    {{$d->nama_kelas}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);  
+                $('#id_kabupaten').val(data.id_kabupaten);        
+                $('#id_kecamatan').val(data.id_kecamatan); 
+                $('#id_jenis_bahaya').val(data.bahaya_rol.id_jenis_bahaya);   
+                $('#id_kelas').val(data.bahaya_rol.id_kelas);   
+                $('#kelas_kerugian').val(data.bahaya_rol.kelas_kerugian);   
+                $('#kelas_kerusakan').val(data.bahaya_rol.kelas_kerusakan);   
+            });
+        });
 
-        // $('body').on('click', '#btn_save', function () {
-        //     let id = $('#formInput').find('#id').val();
-        //     let formData = $('#formInput').serialize();
-        //     $.ajax({
-        //         url: 'update/'+id,
-        //         type: 'POST',
-        //         data: formData,
-        //         success: function (data) {
-        //             $('#univ_modal').modal('hide');
-        //             Swal.fire({
-        //                 title: 'Update!',
-        //                 text: 'Data berhasl di perbaharui.',
-        //                 icon: 'success',
-        //                 cancelButtonColor: '#d33',
-        //                 confirmButtonText: 'Oke'
-        //                 }).then((result) => {
-        //                     location.reload();
-        //                 });
-        //         },
-        //         error: function () {
-        //             Swal.fire({
-        //                 icon: 'error',
-        //                 title: 'Oops...',
-        //                 text: 'Ada yang salah!',
-        //             });
-        //         }
-        //     })
-        // });
+        $('body').on('click', '#btn_save', function () {
+            let id = $('#formInput').find('#id_bahaya').val();
+            let formData = $('#formInput').serialize();
+            $.ajax({
+                url: 'update/'+id,
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    $('#univ_modal').modal('hide');
+                    Swal.fire({
+                        title: 'Update!',
+                        text: 'Data berhasl di perbaharui.',
+                        icon: 'success',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Oke'
+                        }).then((result) => {
+                            location.reload();
+                        });
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ada yang salah!',
+                    });
+                }
+            })
+        });
 
-        // $(document).on('click', '#btn_hapus', function () {
-        //     let dataId = $(this).data('id');
-        //     Swal.fire({
-        //     title: 'Anda Yakin?',
-        //     text: "Data ini mungkin terhubung ke tabel yang lain!",
-        //     icon: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     cancelButtonText: 'Batal',
-        //     confirmButtonText: 'Hapus'
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             $.ajax({
-        //                 url: "delete/" + dataId,
-        //                 type: 'delete',
-        //                 success: function () {
-        //                     Swal.fire({
-        //                         title: 'Terhapus!',
-        //                         text: 'Data berhasl di hapus.',
-        //                         icon: 'warning',
-        //                         cancelButtonColor: '#d33',
-        //                         confirmButtonText: 'Oke'
-        //                     }).then((result) => {
-        //                         location.reload();
-        //                     });
-        //                 },
-        //                 error: function () {
-        //                     Swal.fire({
-        //                         icon: 'error',
-        //                         title: 'Oops...',
-        //                         text: 'Ada yang salah!',
-        //                     });
-        //                 }
-        //             })
-        //         }
-        //     })
-        // });
+        $(document).on('click', '#btn_hapus', function () {
+            let dataId = $(this).data('id');
+            Swal.fire({
+            title: 'Anda Yakin?',
+            text: "Data ini mungkin terhubung ke tabel yang lain!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Batal',
+            confirmButtonText: 'Hapus'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "delete/" + dataId,
+                        type: 'delete',
+                        success: function () {
+                            Swal.fire({
+                                title: 'Terhapus!',
+                                text: 'Data berhasl di hapus.',
+                                icon: 'warning',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oke'
+                            }).then((result) => {
+                                location.reload();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Ada yang salah!',
+                            });
+                        }
+                    })
+                }
+            })
+        });
     } );
 </script>
 @endsection
