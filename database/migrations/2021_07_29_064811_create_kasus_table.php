@@ -17,13 +17,8 @@ class CreateKasusTable extends Migration
             $table->id();
             $table->foreignId('id_kabupaten')->constrained('kabupaten');
             $table->foreignId('id_kecamatan')->constrained('kecamatan');
-            $table->foreignId('id_jenis_bahaya')->constrained('jenis_bahaya');
-            $table->integer('total_luas_bahaya');
-            $table->foreignId('id_kelas')->constrained('kelas');
-            $table->integer('jumlah_penduduk_terpapar');
-            $table->integer('total_kerugian');
-            $table->foreignId('kelas_kerugian')->constrained('kelas');
-            $table->foreignId('kelas_kerusakan')->constrained('kelas');
+            $table->foreignId('id_bahaya')->constrained('bahaya');
+            $table->string('code_bahaya')->constrained('bahaya', 'code_bahaya');
             $table->timestamps();
         });
     }

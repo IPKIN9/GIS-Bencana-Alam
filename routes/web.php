@@ -55,4 +55,8 @@ Route::prefix('contoh')->group(function () {
 });
 Route::prefix('kasus')->group(function () {
     Route::get('/index', 'Dashboard\KasusController@index')->name('kasus.index');
+    Route::get('search/{id}', 'Dashboard\KasusController@search');
+    Route::post('/insert', 'Dashboard\KasusController@insert')->name('kasus.insert');
+    Route::post('detail/post', 'Dashboard\KasusController@bahaya_insert');
+    Route::delete('delete/detail/{id}', 'Dashboard\KasusController@delete_detail');
 });

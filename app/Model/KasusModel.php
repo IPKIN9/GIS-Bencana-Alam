@@ -8,9 +8,7 @@ class KasusModel extends Model
 {
     protected $table = 'kasus';
     protected $fillable = [
-        'id', 'id_kabupaten', 'id_kacamatan', 'id_jenis_bahaya',
-        'total_luas_bahaya', 'id_kelas', 'total_kerugian',
-        'kelas_kerugian', 'kelas_kerusakan', 'created_at', 'updated_at'
+        'id', 'id_bahaya', 'id_kabupaten', 'id_kacamatan', 'code_bahaya',  'created_at', 'updated_at'
     ];
 
     public function kabupaten_rol()
@@ -19,14 +17,14 @@ class KasusModel extends Model
     }
     public function kecamatan_rol()
     {
-        return $this->belongsTo(KabupatenModel::class, 'id_kecamatan');
+        return $this->belongsTo(KecamatanModel::class, 'id_kecamatan');
     }
-    public function jenis_bahaya_rol()
+    public function bahaya_rol()
     {
-        return $this->belongsTo(JenisBahayaModel::class, 'id_jenis_bahaya');
+        return $this->belongsTo(BahayaModel::class, 'id_bahaya');
     }
-    public function kelas_rol()
-    {
-        return $this->belongsTo(KelasModel::class, 'id_kelas', 'kelas_kerugian', 'kelas_kerusakan');
-    }
+    // public function deep_jenis_bahaya()
+    // {
+    //     return $this->hasManyThrough(JenisBahayaModel::class,);
+    // }
 }
