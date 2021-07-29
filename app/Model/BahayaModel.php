@@ -19,6 +19,14 @@ class BahayaModel extends Model
     }
     public function kelas_rol()
     {
-        return $this->belongsTo(KelasModel::class, 'id_kelas', 'kelas_kerugian', 'kelas_kerusakan');
+        return $this->belongsTo(KelasModel::class, 'id_kelas');
+    }
+    public function kerugian_rol()
+    {
+        return $this->belongsTo(KelasModel::class,  'kelas_kerugian');
+    }
+    public function kerusakan_rol()
+    {
+        return $this->belongsTo(KelasModel::class, 'kelas_kerusakan');
     }
 }

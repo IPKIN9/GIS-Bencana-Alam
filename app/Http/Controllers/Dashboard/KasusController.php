@@ -74,7 +74,7 @@ class KasusController extends Controller
 
     public function insert(KasusRequest $request)
     {
-        $date = Carbon::now();
+        $date = Carbon::now()->toDateString();
         $data = array(
             'id_bahaya' => $request->id_bahaya,
             'code_bahaya' => $request->code_bahaya,
@@ -95,7 +95,7 @@ class KasusController extends Controller
 
     public function update(Request $request, $id)
     {
-        $date = Carbon::now();
+        $date = Carbon::now()->toDateString();
         $data = array(
             'id_jenis_bahaya' => $request->id_jenis_bahaya,
             'total_luas_bahaya' => $request->total_luas_bahaya,

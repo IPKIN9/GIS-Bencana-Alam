@@ -119,9 +119,9 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="{{ asset('assets/images/avatar-4.jpg') }}" class="img-radius"
+                                    <img src="{{ asset('assets/images/avatar-x.png') }}" class="img-radius"
                                         alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <span>{{Auth::user()->full_name}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -144,10 +144,10 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="{{ asset('assets/images/avatar-4.jpg') }}"
+                                    <img class="img-80 img-radius" src="{{ asset('assets/images/avatar-x.png') }}"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">John Doe</span>
+                                        <span id="more-details">{{Auth::user()->full_name}}</span>
                                     </div>
                                 </div>
                             </div>
