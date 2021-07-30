@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Model\KecamatanModel;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -15,19 +15,22 @@ class KecamatanController extends Controller
     public function index()
     {
         $data = array(
-            'kecamatan' => KecamatanModel::with('kabupaten_role')->get(), 
+            'kecamatan' => KecamatanModel::with('kabupaten_role')->get(),
             'kabupaten' => KabupatenModel::all()
         );
-        return view('dashboard.Kecamatan')->with('data',$data);
+        return view('dashboard.Kecamatan')->with('data', $data);
     }
 
     public function insert(KecamatanRequest $request)
     {
+        $random = Str::random(5);
+        $code = time() . '_' . $random;
         $date = Carbon::now();
         $data = array(
             'nama_kecamatan' => $request->nama_kecamatan,
             'id_kabupaten' => $request->id_kabupaten,
             'koordinat' => $request->koordinat,
+            'kode' => $code,
             'created_at' => $date,
             'updated_at' => $date
         );
@@ -60,4 +63,3 @@ class KecamatanController extends Controller
         return response()->json();
     }
 }
-

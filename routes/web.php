@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', 'Web\WebController@index')->name('web.index');
+Route::get('/about_us', 'Web\WebController@about')->name('web.about');
+Route::get('/maps', 'Web\WebController@maps')->name('web.maps');
+Route::get('search/{id}', 'Web\WebController@search');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', 'Dashboard\DashboardController@index')->name('home.index');
+    Route::get('/dashboard', 'Dashboard\DashboardController@index')->name('home.index');
     Route::prefix('kelas')->group(function () {
         Route::get('/index', 'Dashboard\KelasController@index')->name('kelas.index');
         Route::post('/insert', 'Dashboard\KelasController@insert')->name('kelas.insert');

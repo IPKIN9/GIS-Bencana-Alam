@@ -19,6 +19,7 @@ class CreateKasusTable extends Migration
             $table->foreignId('id_kecamatan')->constrained('kecamatan');
             $table->foreignId('id_bahaya')->constrained('bahaya');
             $table->string('code_bahaya')->constrained('bahaya', 'code_bahaya');
+            $table->string('kode_kecamatan')->constrained('kecamatan', 'kode');
             $table->timestamps();
         });
     }

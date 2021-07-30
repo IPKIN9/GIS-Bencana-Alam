@@ -189,7 +189,6 @@ Page Tabel Kasus
                     <option value="`+ data.id +`">`+data.nama_kecamatan+`</option>
                     `);
                 });
-                
                 $('#detail_bencana').html('');
                 $('#detail_bencana').append(`
                 <form id="form_detail" class="form-material">

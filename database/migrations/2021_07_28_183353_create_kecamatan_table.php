@@ -17,6 +17,7 @@ class CreateKecamatanTable extends Migration
             $table->id();
             $table->string('nama_kecamatan');
             $table->foreignId('id_kabupaten')->constrained('kabupaten');
+            $table->string('kode');
             $table->string('koordinat');
             $table->timestamps();
         });

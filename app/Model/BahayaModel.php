@@ -8,7 +8,7 @@ class BahayaModel extends Model
 {
     protected $table = 'bahaya';
     protected $fillable = [
-        'id', 'code_bahaya', 'id_jenis_bahaya',
+        'id', 'code_bahaya', 'kode_kecamatan', 'id_jenis_bahaya',
         'total_luas_bahaya', 'id_kelas',
         'jumlah_penduduk_terpapar', 'total_kerugian',
         'kelas_kerugian', 'kelas_kerusakan', 'created_at', 'updated_at'

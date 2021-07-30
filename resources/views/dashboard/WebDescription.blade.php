@@ -29,7 +29,7 @@ Tabel Web Description
             @endif
             <div class="card-block tab-icon">
                 <div class="row">
-                    <div class="col-lg-12 col-xl-12">                       
+                    <div class="col-lg-12 col-xl-12">
                         <ul class="nav nav-tabs md-tabs " role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#table" role="tab"><i
@@ -62,16 +62,16 @@ Tabel Web Description
                                                 </thead>
                                                 <tbody>
                                                     @php
-                                                        $no=1;
+                                                    $no=1;
                                                     @endphp
                                                     @foreach ($data as $d)
-                                                        <tr>
-                                                            <td>{{$no++}}</td>
-                                                            <td>{{$d->deskripsi}}</td>
-                                                            <td>{{$d->created_at}}</td>
-                                                            <td>{{$d->updated_at}}</td>                                                           
-                                                            <td>
-                                                                <button id="btn_edit" data-id="{{$d->id}}"
+                                                    <tr>
+                                                        <td>{{$no++}}</td>
+                                                        <td>{{$d->deskripsi}}</td>
+                                                        <td>{{$d->created_at}}</td>
+                                                        <td>{{$d->updated_at}}</td>
+                                                        <td>
+                                                            <button id="btn_edit" data-id="{{$d->id}}"
                                                                 style="height: 30px; width:30px;"
                                                                 class="mr-2 btn waves-effect waves-light btn-primary btn-icon"><i
                                                                     class="fa fa-edit"
@@ -81,8 +81,8 @@ Tabel Web Description
                                                                 class="btn waves-effect waves-light btn-danger btn-icon"><i
                                                                     class="fa fa-trash"
                                                                     style="margin-left: 9px;"></i></button>
-                                                            </td>
-                                                        </tr>
+                                                        </td>
+                                                    </tr>
                                                     @endforeach
                                                 </tbody>
                                                 <tfoot>
@@ -121,8 +121,8 @@ Tabel Web Description
                                             <div class="form-group row">
                                                 <div class="col-sm-10"></div>
                                                 <div class="col-sm-2">
-                                                    <button 
-                                                    type="submit" class="btn waves-effect waves-light btn-primary">Simpan</button>
+                                                    <button type="submit"
+                                                        class="btn waves-effect waves-light btn-primary">Simpan</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -138,8 +138,8 @@ Tabel Web Description
 </div>
 @endsection
 @section('js')
-    <script>
-        $(document).ready( function (){
+<script>
+    $(document).ready( function (){
             $.ajaxSetup({
                 headers:{
                     'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
@@ -237,5 +237,5 @@ Tabel Web Description
                 });
             });
         });
-    </script>
+</script>
 @endsection

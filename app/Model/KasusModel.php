@@ -8,7 +8,7 @@ class KasusModel extends Model
 {
     protected $table = 'kasus';
     protected $fillable = [
-        'id', 'id_bahaya', 'id_kabupaten', 'id_kacamatan', 'code_bahaya',  'created_at', 'updated_at'
+        'id', 'id_bahaya', 'code_bahaya', 'id_kabupaten', 'id_kacamatan', 'kode_kecamatan',  'created_at', 'updated_at'
     ];
 
     public function kabupaten_rol()

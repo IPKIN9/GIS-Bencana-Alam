@@ -9,6 +9,7 @@ class KecamatanModel extends Model
     protected $table = 'kecamatan';
     protected $fillable = [
         'id',
+        'kode',
         'nama_kecamatan',
         'id_kabupaten',
         'koordinat',
@@ -18,5 +19,10 @@ class KecamatanModel extends Model
     public function kabupaten_role()
     {
         return $this->belongsTo(KabupatenModel::class, 'id_kabupaten');
+    }
+
+    public function bahaya_rol()
+    {
+        return $this->hasMany(BahayaModel::class, 'id_bahaya', 'id');
     }
 }
