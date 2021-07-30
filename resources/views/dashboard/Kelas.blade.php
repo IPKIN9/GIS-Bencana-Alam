@@ -123,9 +123,9 @@ Tabel Kelas
                                                                     <input type="text" name="nama_kelas"
                                                                         class="form-control" placeholder="Nama kelas"
                                                                         autocomplete="off">
-                                                                    @error('nama_kelas')
-                                                                    <div class="alert alert-danger">{{$message }}</div>
-                                                                    @enderror
+                                                                        @error('nama_kelas')
+                                                                        <p class="text text-danger mt-2">{{ $message }}</p>
+                                                                        @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">
