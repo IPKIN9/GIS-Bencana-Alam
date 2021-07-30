@@ -19,4 +19,9 @@ class KecamatanModel extends Model
     {
         return $this->belongsTo(KabupatenModel::class, 'id_kabupaten');
     }
+
+    public function bahaya_rol()
+    {
+        return $this->hasMany(BahayaModel::class, 'id_bahaya', 'id');
+    }
 }

@@ -80,12 +80,32 @@
         </div>
     </div>
 </div>
-<div class="card-body">
-    <div class="col-md-12 ml-auto mr-auto">
+<div class="card-body row">
+    <div class="col-md-2">
+        <div class="card-pricing2 card-primary">
+            <div class="pricing-header">
+                <h3 class="fw-bold">LEGEND</h3>
+                <span class="sub-title">SULTENG</span>
+            </div>
+            <div class="price-value">
+                <div class="value">
+                    <span class="currency"></span>
+                    <span class="amount">GIS</span>
+                    <span class="month">Filter</span>
+                </div>
+            </div>
+            <ul class="pricing-content mt-2">
+                @foreach ($data['list_kabupaten'] as $d)
+                <li><button class="btn-link" id="btn_kab">{{$d->nama_kabupaten}}</button class="btn-link"></li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-10 ml-auto mr-auto">
         <div class="mapcontainer">
             <div id="map" class="map-canvas" data-lat="40.748817" data-lng="-73.985428"
                 style="height: 600px; position: relative; overflow: hidden;">
-                <script>
+                <script id="filter_maps">
                     var map = L.map('map').setView([-0.3802429425365326, 120.9966064497399], 8);
                 
                         L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=iVwxS42CVMlobjgLaPRM', {
@@ -102,7 +122,7 @@
 												<p class="card-category" style="margin-bottom:-5px;">Kecamatan</p>
 												<h4 class="card-title">{{$d->nama_kecamatan}}</h4>
 											</div>
-                                            <span><button class="btn btn-link mt-2">
+                                            <span><button type="button" id="detail_maps" data-id="{{$d->id}}" class="btn btn-link mt-2">
 											<span class="btn-label">
 												<i class="fa fa-link"></i>
 											</span>
@@ -129,4 +149,44 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('body').on('click','#detail_maps',function(){
+            let dataId = $(this).data('id');
+            let $url = "search/"+dataId;
+            $.get($url,function(data){
+                $('#mapsTitle').html('Informasi Detail');
+                $('#mapsBody').html('');
+                $('#mapsModal').modal('show');
+                $.each(data, function( i, data ) {
+                    $('#mapsBody').append(`
+                    <tr>
+                        <td>`+ data.jenis_bahaya_rol.nama_jenis_bahaya +`</td>
+                        <td class="text-right">
+                            `+ data.total_luas_bahaya +`  Meter
+                        </td>
+                        <td class="text-right">
+                            `+ data.jumlah_penduduk_terpapar +`  Jiwa
+                        </td>
+                        <td class="text-right">
+                            `+ data.total_kerugian +`  Miliar
+                        </td>
+                        <td class="text-right">
+                            `+ data.kelas_rol.nama_kelas +`
+                        </td>
+                    </tr>
+                `);
+                });
+            });
+        });
+    });
+</script>
 @endsection

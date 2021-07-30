@@ -46,7 +46,15 @@ class WebController extends Controller
             'kasus_terbaru' => KasusModel::with('bahaya_rol')->orderBy('created_at', 'DESC')->take(5)->get(),
             'jumlah_terpapar' => BahayaModel::with('jenis_bahaya_rol')->take(5)->get(),
             'marker_kecamatan' => KecamatanModel::with('kabupaten_role')->get(),
+            'list_kabupaten' => KabupatenModel::all(),
         );
         return view('web.Maps')->with('data', $data);
+    }
+
+    public function search($id)
+    {
+        $where = KasusModel::where('id_kecamatan', $id)->value('id_bahaya');
+        $response = BahayaModel::with('jenis_bahaya_rol', 'kelas_rol', 'kerugian_rol', 'kerusakan_rol')->where('id', $where)->get();
+        return response()->json($response);
     }
 }

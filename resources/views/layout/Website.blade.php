@@ -233,6 +233,7 @@
             </div>
         </div>
     </div>
+    @include('layout.Modal')
     <script src="{{ asset('web/assets/js/core/jquery.3.2.1.min.js') }}"></script>
     <script src="{{ asset('web/assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('web/assets/js/core/bootstrap.min.js') }}"></script>
@@ -289,6 +290,7 @@
 			fillColor: 'rgba(255, 165, 52, .14)'
 		});
     </script>
+    @yield('js')
 </body>
 
 </html>
