@@ -91,7 +91,7 @@
                 <div class="value">
                     <span class="currency"></span>
                     <span class="amount">GIS</span>
-                    <span class="month">Filter</span>
+                    <span class="month">KAB/KOTA</span>
                 </div>
             </div>
             <ul class="pricing-content mt-2">

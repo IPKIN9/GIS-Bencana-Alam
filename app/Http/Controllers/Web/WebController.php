@@ -53,8 +53,8 @@ class WebController extends Controller
 
     public function search($id)
     {
-        $where = KasusModel::where('id_kecamatan', $id)->value('id_bahaya');
-        $response = BahayaModel::with('jenis_bahaya_rol', 'kelas_rol', 'kerugian_rol', 'kerusakan_rol')->where('id', $where)->get();
+        $where = KasusModel::where('id_kecamatan', $id)->value('kode_kecamatan');
+        $response = BahayaModel::with('jenis_bahaya_rol', 'kelas_rol', 'kerugian_rol', 'kerusakan_rol')->where('kode_kecamatan', $where)->get();
         return response()->json($response);
     }
 }

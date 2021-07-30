@@ -47,6 +47,7 @@ class KasusController extends Controller
         $date = Carbon::now();
         $data = array(
             'code_bahaya' => $code,
+            'kode_kecamatan' => '-',
             'id_jenis_bahaya' => $request->id_jenis_bahaya,
             'total_luas_bahaya' => $request->total_luas_bahaya,
             'id_kelas' => $request->id_kelas,
@@ -74,8 +75,10 @@ class KasusController extends Controller
 
     public function insert(KasusRequest $request)
     {
+        $kode = KecamatanModel::where('id', $request->id_kecamatan)->value('kode');
         $date = Carbon::now()->toDateString();
         $data = array(
+            'kode_kecamatan' => $kode,
             'id_bahaya' => $request->id_bahaya,
             'code_bahaya' => $request->code_bahaya,
             'id_kabupaten' => $request->id_kabupaten,
@@ -84,6 +87,9 @@ class KasusController extends Controller
             'updated_at' => $date,
         );
         DB::table('kasus')->insert($data);
+        BahayaModel::where('id', $request->id_bahaya)->update([
+            'kode_kecamatan' => $kode
+        ]);
         return redirect()->back()->with('status', 'Data berhasil disimpan');
     }
 

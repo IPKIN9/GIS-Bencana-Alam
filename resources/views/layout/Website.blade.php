@@ -122,7 +122,8 @@
                                 <h5 class="text-white op-7 mb-2">Dampak bencana provinsi Sulawesi Tengah</h5>
                             </div>
                             <div class="ml-md-auto py-2 py-md-0">
-                                <a href="" class="btn btn-white btn-border btn-round mr-2"><i class="
+                                <a href="{{route('web.maps')}}" class="btn btn-white btn-border btn-round mr-2"><i
+                                        class="
                                     fas fa-globe-asia mr-2"></i>MAPS</a>
                             </div>
                         </div>

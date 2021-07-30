@@ -24,13 +24,37 @@
                         Tentang Kami
                     </a>
                 </h3>
-                <p class="card-text">{{$data['webdesc']->deskripsi}}</p>
+                <p class="card-text">
+                    @if ($data['webdesc'] == '')
+                    No - Data
+                    @else
+                    {{$data['webdesc']->deskripsi}}
+                    @endif</p>
                 <div class="separator-solid"></div>
                 <div class="mb-4">
-                    <h4>Alamat</h4><span>{{$data['contact']->alamat}}</span>
+                    <h4>Alamat</h4><span>
+                        @if ($data['contact'] == '')
+                        No - Data
+                        @else
+                        {{$data['contact']->alamat}}
+                        @endif</span>
                 </div>
                 <div class="card-footer">
                     <div class="row user-stats text-center">
+                        @if ($data['contact'] == '')
+                        <div class="col">
+                            <div class="number">Pos</div>
+                            No - Data
+                        </div>
+                        <div class="col">
+                            <div class="number">Email</div>
+                            No - Data
+                        </div>
+                        <div class="col">
+                            <div class="number">Telepon</div>
+                            No - Data
+                        </div>
+                        @else
                         <div class="col">
                             <div class="number">Pos</div>
                             <div class="title">{{$data['contact']->kantor_pos}}</div>
@@ -43,6 +67,7 @@
                             <div class="number">Telepon</div>
                             <div class="title">{{$data['contact']->telepon}}</div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

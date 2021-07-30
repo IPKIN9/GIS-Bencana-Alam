@@ -16,6 +16,7 @@ class CreateBahayaTable extends Migration
         Schema::create('bahaya', function (Blueprint $table) {
             $table->id();
             $table->string('code_bahaya')->unique();
+            $table->string('kode_kecamatan');
             $table->foreignId('id_jenis_bahaya')->constrained('jenis_bahaya');
             $table->integer('total_luas_bahaya');
             $table->foreignId('id_kelas')->constrained('kelas');
