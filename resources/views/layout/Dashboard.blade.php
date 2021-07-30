@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="">
+                        <a href="" class="ml-4 mt-1">
                             <h4>GIS BENCANA</h4>
                         </a>
                         <a class="mobile-options waves-effect waves-light">
@@ -143,7 +143,7 @@
                         <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
-                                <div class="main-menu-header">
+                                <div class="main-menu-header mr-5">
                                     <img class="img-80 img-radius" src="{{ asset('assets/images/avatar-x.png') }}"
                                         alt="User-Profile-Image">
                                     <div class="user-details">
