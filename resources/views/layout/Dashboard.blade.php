@@ -102,7 +102,7 @@
                             </div>
                         </div>
                         <a href="">
-                            <img class="img-fluid" src="{{ asset('assets/images/logo.png') }}" alt="Theme-Logo" />
+                            <h4>GIS BENCANA</h4>
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -264,7 +264,7 @@
                                     <div class="col-md-8">
                                         <div class="page-header-title">
                                             <h5 class="m-b-10">Dashboard</h5>
-                                            <p class="m-b-0">Welcome to Mega Able</p>
+                                            <p class="m-b-0">Sistem Informasi Geografis Dampak Bencana</p>
                                         </div>
                                     </div>
                                     <div class="col-md-4">

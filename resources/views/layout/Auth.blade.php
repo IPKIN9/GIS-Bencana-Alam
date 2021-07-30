@@ -2,14 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Mega Able bootstrap admin template by codedthemes </title>
-    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 10]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <!-- Meta -->
+    <title>Auth</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -90,18 +83,18 @@
       </div>
   </div>
   <!-- Pre-loader end -->
-  <section class="login-block">
-        <!-- Container-fluid starts -->
-        <div class="container-fluid">
-            @yield('content')
-            <!-- end of row -->
-        </div>
-        <!-- end of container-fluid -->
+    <section class="login-block">
+    <!-- Container-fluid starts -->
+    <div class="container-fluid">
+        @yield('content')
+        <!-- end of row -->
+    </div>
+    <!-- end of container-fluid -->
     </section>
     <script type="text/javascript" src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>     
     <script type="text/javascript" src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }} "></script>
     <script type="text/javascript" src="{{ asset('assets/js/popper.js/popper.min.js') }}"></script>    
-     <script type="text/javascript" src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }} "></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }} "></script>
 <!-- waves js -->
 <script src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script>
 <!-- jquery slimscroll js -->

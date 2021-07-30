@@ -214,7 +214,7 @@ Page Tabel Kasus
                                         <label class="col-sm-4 col-form-label">Total Luas Bahaya</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="total_luas_bahaya"
-                                                class="form-control" placeholder="Autocomplete Off"
+                                                class="form-control" placeholder="Total Luas Bahaya"
                                                 autocomplete="off">
                                         </div>
                                     </div>
@@ -243,7 +243,7 @@ Page Tabel Kasus
                                         <div class="col-sm-10">
                                             <input type="text" name="jumlah_penduduk_terpapar"
                                                 id="jumlah_penduduk_terpapar" class="form-control"
-                                                placeholder="Autocomplete Off" autocomplete="off">
+                                                placeholder="Jumlah Penduduk Terpapar" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -254,7 +254,7 @@ Page Tabel Kasus
                                         <label class="col-sm-4 col-form-label">Total Kerugian</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="total_kerugian"
-                                                class="form-control" placeholder="Autocomplete Off"
+                                                class="form-control" placeholder="Total Kerugian"
                                                 autocomplete="off">
                                         </div>
                                     </div>

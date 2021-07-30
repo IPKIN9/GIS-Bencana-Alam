@@ -30,9 +30,8 @@
         <div class="main-header">
 
             <div class="logo-header" data-background-color="blue2">
-
                 <a href="#" class="logo">
-                    <img src="{{ asset('web/assets/img/logo.svg') }}" alt="navbar brand" class="navbar-brand">
+                    <h2 alt="navbar brand" class="navbar-brand text-bold text-white">GIS BENCANA</h2>
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -125,6 +124,8 @@
                                 <a href="{{route('web.maps')}}" class="btn btn-white btn-border btn-round mr-2"><i
                                         class="
                                     fas fa-globe-asia mr-2"></i>MAPS</a>
+                                <a href="{{route('login')}}" class="btn btn-secondary btn-round"><i class="
+                                    la flaticon-power mr-2"></i>LOGIN</a>
                             </div>
                         </div>
                     </div>
@@ -135,28 +136,9 @@
             </div>
             <footer class="footer">
                 <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://www.themekita.com">
-                                    ThemeKita
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Help
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Licenses
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                     <div class="copyright ml-auto">
-                        2018, made with <i class="fa fa-heart heart text-danger"></i> by <a
-                            href="https://www.themekita.com">ThemeKita</a>
+                        2021, <i class="fa fa-heart heart text-danger"></i> by <a
+                            href="https://www.themekita.com">MassoGis Team</a>
                     </div>
                 </div>
             </footer>
