@@ -21,7 +21,7 @@ class CreateBahayaTable extends Migration
             $table->integer('total_luas_bahaya');
             $table->foreignId('id_kelas')->constrained('kelas');
             $table->integer('jumlah_penduduk_terpapar');
-            $table->integer('total_kerugian');
+            $table->decimal('total_kerugian');
             $table->foreignId('kelas_kerugian')->constrained('kelas');
             $table->foreignId('kelas_kerusakan')->constrained('kelas');
             $table->timestamps();

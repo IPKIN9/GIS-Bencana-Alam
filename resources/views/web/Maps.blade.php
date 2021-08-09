@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-7 col-stats">
                         <div class="numbers">
-                            <p class="card-category">Total Kerugian</p>
+                            <p class="card-category">Total Kerugian (Miliar)</p>
                             <h4 class="card-title">{{$data['total_kerugian']}}</h4>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-7 col-stats">
                         <div class="numbers">
-                            <p class="card-category">Jumlah Kabupaten</p>
+                            <p class="card-category">Jumlah Kabupaten/Kota</p>
                             <h4 class="card-title">{{$data['jumlah_kabupaten']}}</h4>
                         </div>
                     </div>

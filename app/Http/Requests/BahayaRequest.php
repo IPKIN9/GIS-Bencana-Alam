@@ -19,7 +19,7 @@ class BahayaRequest extends FormRequest
             'total_luas_bahaya' => 'required|integer',
             'id_kelas' => 'required',
             'jumlah_penduduk_terpapar' => 'required|integer',
-            'total_kerugian' => 'required|integer',
+            'total_kerugian' => 'required',
             'kelas_kerugian' => 'required',
             'kelas_kerusakan' => 'required',
         ];
