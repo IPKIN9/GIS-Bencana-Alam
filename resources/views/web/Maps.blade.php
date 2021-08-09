@@ -171,7 +171,7 @@
                     <tr>
                         <td>`+ data.jenis_bahaya_rol.nama_jenis_bahaya +`</td>
                         <td class="text-right">
-                            `+ data.total_luas_bahaya +`  Meter
+                            `+ data.total_luas_bahaya +`  KM
                         </td>
                         <td class="text-right">
                             `+ data.jumlah_penduduk_terpapar +`  Jiwa
